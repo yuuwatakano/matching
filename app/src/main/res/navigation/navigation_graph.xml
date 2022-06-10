@@ -1,0 +1,19 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/navi_home">
+
+    <fragment android:id="@+id/navi_home"
+        android:name="jp.techacademy.yuuwa.takano.matching.HomeFragment"
+        android:label="HomeFragment"/>
+
+    <fragment android:id="@+id/navi_check"
+        android:name="jp.techacademy.yuuwa.takano.matching.MatchingFragment"
+        android:label="MatchingFragment"/>
+
+    <fragment android:id="@+id/navi_person"
+        android:name="jp.techacademy.yuuwa.takano.matching.AccountFragment"
+        android:label="AccountFragment"/>
+
+</navigation>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context=".LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/emailText"
+            android:hint="@string/login_email_hint" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="@string/login_pass_hint"
+            android:id="@+id/passwordText" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/login_title"
+            android:id="@+id/loginButton" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login_createaccountinfo_text"
+            android:id="@+id/login_createaccountinfo_text" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login_name_hint"
+            android:id="@+id/nameText" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login_lineid_text"
+            android:id="@+id/lineid_Text" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/address_info"
+            android:id="@+id/address_info" />
+
+        <Spinner
+            android:id="@+id/address_spinner"
+            android:spinnerMode="dialog"
+            android:background="#ffe4e1"
+            android:layout_width="100dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/genre_info"
+            android:id="@+id/genre_info" />
+
+        <Spinner
+            android:id="@+id/genre_spinner"
+            android:spinnerMode="dialog"
+            android:background="#e0ffff"
+            android:layout_width="100dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/skill_info"
+            android:id="@+id/skill_info" />
+
+        <Spinner
+            android:id="@+id/skill_spinner"
+            android:spinnerMode="dialog"
+            android:background="#7fffd4"
+            android:layout_width="100dp"
+            android:layout_height="40dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/login_createbutton_text"
+            android:id="@+id/createButton" />
+    </LinearLayout>
+
+</RelativeLayout>

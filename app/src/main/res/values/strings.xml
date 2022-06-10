@@ -1,0 +1,96 @@
+<resources>
+
+
+    <string name="app_name">match</string>
+    <string name="login_email_hint">メールアドレス</string>
+    <string name="login_pass_hint">パスワード（6文字以上）</string>
+    <string name="login_name_hint">ニックネーム</string>
+    <string name="login_createbutton_text">アカウント作成</string>
+    <string name="login_lineid_text">LINEID(マッチングの際に公開されます)</string>
+    <string name="login_title">ログイン</string>
+    <string name="login_createaccountinfo_text">アカウント作成の際は以下入力後作成ボタン</string>
+
+    <string name="address_info">所在地</string>
+    <string name="genre_info">ジャンル</string>
+    <string name="skill_info">スキル</string>
+
+    <string name="create_account_failure_message">アカウント作成に失敗しました</string>
+    <string name="login_failure_message">ログインに失敗しました</string>
+    <string name="login_error_message">正しく入力してください</string>
+
+    <string-array name="address_spinnerItems">
+        <item>北海道</item>
+        <item>青森県</item>
+        <item>岩手県</item>
+        <item>宮城県</item>
+        <item>秋田県</item>
+        <item>山形県</item>
+        <item>福島県</item>
+        <item>茨城県</item>
+        <item>栃木県</item>
+        <item>群馬県</item>
+        <item>埼玉県</item>
+        <item>千葉県</item>
+        <item>東京都</item>
+        <item>神奈川県</item>
+        <item>新潟県</item>
+        <item>富山県</item>
+        <item>石川県</item>
+        <item>福井県</item>
+        <item>山梨県</item>
+        <item>長野県</item>
+        <item>岐阜県</item>
+        <item>静岡県</item>
+        <item>愛知県</item>
+        <item>三重県</item>
+        <item>滋賀県</item>
+        <item>京都府</item>
+        <item>大阪府</item>
+        <item>兵庫県</item>
+        <item>奈良県</item>
+        <item>和歌山県</item>
+        <item>鳥取県</item>
+        <item>島根県</item>
+        <item>岡山県</item>
+        <item>広島県</item>
+        <item>山口県</item>
+        <item>徳島県</item>
+        <item>香川県</item>
+        <item>愛媛県</item>
+        <item>高知県</item>
+        <item>福岡県</item>
+        <item>佐賀県</item>
+        <item>長崎県</item>
+        <item>熊本県</item>
+        <item>大分県</item>
+        <item>宮崎県</item>
+        <item>鹿児島県</item>
+        <item>沖縄県 </item>
+    </string-array>
+
+    <string-array name="genre_spinnerItems">
+        <item>HIPHOP</item>
+        <item>ROCK</item>
+        <item>POPS</item>
+    </string-array>
+
+    <string-array name="skill_spinnerItems">
+        <item>ボーカル</item>
+        <item>ギター</item>
+        <item>トラックメイク</item>
+    </string-array>
+
+    <string name="logout_complete_message">ログアウトしました</string>
+    <string name="title_activity_main2">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="area_select_label">エリア指定</string>
+    <string name="menu_local_label">LOCAL</string>
+    <string name="menu_all_label">ALL</string>
+    <string name="menu_matching_label">マッチングリスト</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
