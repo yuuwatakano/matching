@@ -9,12 +9,21 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     tools:context=".LoginActivity">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".LoginActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/imageView"
+            android:background="#d3d3d3"
+            android:layout_centerHorizontal="true"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,13 +100,13 @@
             android:background="#7fffd4"
             android:layout_width="100dp"
             android:layout_height="40dp" />
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@string/login_createbutton_text"
             android:id="@+id/createButton" />
-    </LinearLayout>
 
+    </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

@@ -1,22 +1,16 @@
 package jp.techacademy.yuuwa.takano.matching
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_account_fragment.*
 import kotlinx.android.synthetic.main.activity_account_fragment.login
 import kotlinx.android.synthetic.main.activity_account_fragment.logout
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 class AccountFragment : Fragment() {
     override fun onCreateView(
@@ -26,7 +20,6 @@ class AccountFragment : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.activity_account_fragment, container, false)
-
     }
 
     override fun onResume() {

@@ -8,6 +8,7 @@
     <string name="login_createbutton_text">アカウント作成</string>
     <string name="login_lineid_text">LINEID(マッチングの際に公開されます)</string>
     <string name="login_title">ログイン</string>
+    <string name="get_image">画像を取得</string>
     <string name="login_createaccountinfo_text">アカウント作成の際は以下入力後作成ボタン</string>
 
     <string name="address_info">所在地</string>
