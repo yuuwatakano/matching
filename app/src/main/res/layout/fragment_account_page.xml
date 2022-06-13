@@ -37,6 +37,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/skillText" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="マッチングしてます"
+            android:id="@+id/matchText" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="マッチング申請ボタン"
+            android:id="@+id/match_send_button" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="マッチング申請取り消しボタン"
+            android:id="@+id/match_send_cansel_button" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="マッチング承認ボタン"
+            android:id="@+id/match_button" />
 
     </LinearLayout>
 
