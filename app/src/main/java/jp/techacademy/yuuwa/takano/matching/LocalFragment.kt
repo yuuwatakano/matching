@@ -38,54 +38,60 @@ class LocalFragment : Fragment() {
     }
 
     //Account配列にデータを受け渡すリスナー　ここから
-    private val mAccountListener = object : ChildEventListener {
-        override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
-            Log.d("test_local", dataSnapshot.toString())
-            Log.d("test_local", dataSnapshot.key.toString())
-            Log.d("test_local", dataSnapshot.value.toString())
+    private val mAccountListener = object : ValueEventListener {
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            Log.d("test_local1", dataSnapshot.toString())
+            Log.d("test_local1", dataSnapshot.key.toString())
+            Log.d("test_local1", dataSnapshot.value.toString())
+            if (dataSnapshot.value == null){
+                return
+            }
+
             val map = dataSnapshot.value as Map<*, *>
             val ad = map["address"]?: ""
             val gr = map["genre"]?: ""
             val Local = "Local"
-            Log.d("test_local", ad.toString())
-            Log.d("test_local", gr.toString())
-
+            Log.d("test_local2", ad.toString())
+            Log.d("test_local2", gr.toString())
 
             mAccountRef = mDatabaseReference.child(AccountPATH).child(Local).child(ad.toString()).child(gr.toString())
 
-            mAccountRef!!.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val map = snapshot.value as Map<String,String>
-                    Log.d("test_local1", snapshot.toString())
+            mAccountRef!!.addChildEventListener(object : ChildEventListener {
+                override fun onChildAdded(Snapshot: DataSnapshot, s: String?) {
+                    val map = Snapshot.value as Map<String,String>
+                    val user = FirebaseAuth.getInstance().currentUser
+                    Log.d("test_local1", Snapshot.toString())
                     val name = map["name"] ?: ""
                     val address = map["address"] ?: ""
                     val genre = map["genre"] ?: ""
                     val skill = map["skill"] ?: ""
                     val imageString = map["image"] ?: ""
+                    val id = map["id"] ?: ""
+                    if (id == user!!.uid){
+                        return
+                    }
                     val bytes =
                         if (imageString.isNotEmpty()) {
                             Base64.decode(imageString, Base64.DEFAULT)
                         } else {
                             byteArrayOf()
                         }
-                    Log.d("test_local1", name)
-                    Log.d("test_local1", address)
-                    Log.d("test_local1", genre)
-                    Log.d("test_local1", skill)
+                    Log.d("test_local3", name)
+                    Log.d("test_local3", address)
+                    Log.d("test_local3", genre)
+                    Log.d("test_local3", skill)
 
-                    val account = Account(name, address, genre, skill,bytes)
+                    val account = Account(name, address, genre, skill,id,bytes)
                     Log.d("test", account.toString())
                     mAccountArrayList.add(account)
                     mAdapter.notifyDataSetChanged()
-
                 }
                 override fun onCancelled(firebaseError: DatabaseError) {}
+                override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {}
+                override fun onChildRemoved(dataSnapshot: DataSnapshot) {}
+                override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {}
             })
         }
-
-        override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {}
-        override fun onChildRemoved(p0: DataSnapshot) {}
-        override fun onChildMoved(p0: DataSnapshot, p1: String?) {}
         override fun onCancelled(p0: DatabaseError) {}
     }
     //Account配列にデータを受け渡すリスナー　ここまで
@@ -114,8 +120,8 @@ class LocalFragment : Fragment() {
         val user = FirebaseAuth.getInstance().currentUser
         val all = "all"
         if(user != null){
-            mAccountRef = mDatabaseReference.child(AccountPATH).child(all)//.child(user!!.uid)
-            mAccountRef!!.addChildEventListener(mAccountListener)
+            mAccountRef = mDatabaseReference.child(AccountPATH).child(all).child(user!!.uid)
+            mAccountRef!!.addListenerForSingleValueEvent(mAccountListener)
         }else{
             startActivity(Intent(context, LoginActivity::class.java))
         }
@@ -137,6 +143,19 @@ class LocalFragment : Fragment() {
 
     //RecyclerView内のアイテムがクリックされたときに動く
     private fun onClickItem(tappedView: View, itemModel: Account) {
+        Log.d("tkn", itemModel.address)
+        Log.d("tkn", itemModel.name)
+        Log.d("tkn", itemModel.genre)
+        Log.d("tkn", itemModel.skill)
+        Log.d("tkn", itemModel.imageBytes.toString())
+        val intent = Intent(activity, AccountPageActivity::class.java)
+        intent.putExtra("address",itemModel.address)
+        intent.putExtra("name",itemModel.name)
+        intent.putExtra("genre",itemModel.genre)
+        intent.putExtra("skill",itemModel.skill)
+        intent.putExtra("id",itemModel.id)
+        intent.putExtra("image",itemModel.imageBytes)
+        startActivity(intent)
+    }
 
     }
-}

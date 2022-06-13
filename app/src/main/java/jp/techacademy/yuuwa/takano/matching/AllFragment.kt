@@ -11,8 +11,10 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home_fragment.*
 import kotlinx.android.synthetic.main.fragment_account_page.*
@@ -45,25 +47,33 @@ class AllFragment : Fragment() {
         override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
             Log.d("test_account", dataSnapshot.toString())
             Log.d("test_account", dataSnapshot.value.toString())
+            if (dataSnapshot.value == null){
+                return
+            }
             val map = dataSnapshot.value as Map<String, String>
             val name = map["name"] ?: ""
             val address = map["address"] ?: ""
             val genre = map["genre"] ?: ""
             val skill = map["skill"] ?: ""
             val imageString = map["image"] ?: ""
+            val id = map["id"] ?: ""
             val bytes =
                 if (imageString.isNotEmpty()) {
                     Base64.decode(imageString, Base64.DEFAULT)
                 } else {
                     byteArrayOf()
                 }
-
+            val user = FirebaseAuth.getInstance().currentUser
+            if (id == user!!.uid){
+                return
+            }
             Log.d("test_account", name)
             Log.d("test_account", address)
             Log.d("test_account", genre)
             Log.d("test_account", skill)
             Log.d("test_account1", imageString)
-            val account = Account(name, address, genre, skill,bytes)
+            Log.d("test_account1", id)
+            val account = Account(name, address, genre, skill,id,bytes)
             Log.d("test", account.toString())
             mAccountArrayList.add(account)
             mAdapter.notifyDataSetChanged()
@@ -83,7 +93,6 @@ class AllFragment : Fragment() {
             onResume()
             swipeRefreshLayout.isRefreshing = false
         }
-
     }
 
 
@@ -104,11 +113,12 @@ class AllFragment : Fragment() {
 
         this.recyclerView?.apply {
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context,1)
             itemAnimator = DefaultItemAnimator()
             adapter = mAdapter
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -123,12 +133,14 @@ class AllFragment : Fragment() {
         Log.d("tkn", itemModel.name)
         Log.d("tkn", itemModel.genre)
         Log.d("tkn", itemModel.skill)
+        Log.d("tkn4", itemModel.id)
         Log.d("tkn", itemModel.imageBytes.toString())
         val intent = Intent(activity, AccountPageActivity::class.java)
         intent.putExtra("address",itemModel.address)
         intent.putExtra("name",itemModel.name)
         intent.putExtra("genre",itemModel.genre)
         intent.putExtra("skill",itemModel.skill)
+        intent.putExtra("id",itemModel.id)
         intent.putExtra("image",itemModel.imageBytes)
         startActivity(intent)
     }

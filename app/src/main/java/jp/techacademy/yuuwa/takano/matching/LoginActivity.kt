@@ -121,7 +121,6 @@ class LoginActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 addresstext = parent?.selectedItem as String //所在地データ
                 Log.v("test_address", addresstext)
-
             }
 
             // 基本的には呼ばれないが、何らかの理由で選択されることなく項目が閉じられたら呼ばれる
@@ -216,6 +215,8 @@ class LoginActivity : AppCompatActivity() {
                 val allRef = mDataBaseReference.child(AccountPATH).child(all).child(user!!.uid)
 
 
+
+
                 if (mIsCreateAccount) {
                     val drawable = imageView.drawable as? BitmapDrawable
 
@@ -235,10 +236,8 @@ class LoginActivity : AppCompatActivity() {
                         data["address"] = addresstext
                         data["genre"] = genretext
                         data["skill"] = skilltext
+                        data["id"] = user!!.uid
                         data["image"] = bit
-// 添付画像を取得する
-
-
                         localRef.setValue(data)
                         allRef.setValue(data)
                     }

@@ -13,6 +13,7 @@ class AccountPageActivity : AppCompatActivity() {
         val name =intent.getStringExtra("name")
         val genre =intent.getStringExtra("genre")
         val skill =intent.getStringExtra("skill")
+        val id =intent.getStringExtra("id")
         val icon=intent.getByteArrayExtra("image")
         Log.d("tkn2", address.toString())
         Log.d("tkn2", name.toString())
@@ -24,6 +25,7 @@ class AccountPageActivity : AppCompatActivity() {
         args.putString("name", name)
         args.putString("genre", genre)
         args.putString("skill", skill)
+        args.putString("id", id)
         args.putByteArray("image", icon)
 
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()

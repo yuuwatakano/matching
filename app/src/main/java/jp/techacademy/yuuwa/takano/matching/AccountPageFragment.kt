@@ -36,6 +36,9 @@ class AccountPageFragment : Fragment() {
         val genre = requireArguments().getString("genre")
         val skill = requireArguments().getString("skill")
         val icon = requireArguments().getByteArray("image")
+        val id = requireArguments().getString("id")
+        Log.d("tkn5", id.toString())
+
         if (icon!!.isNotEmpty()) {
             val image = BitmapFactory.decodeByteArray(icon, 0, icon.size).copy(Bitmap.Config.ARGB_8888, true)
             val imageView =iconImageView as ImageView
