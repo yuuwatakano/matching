@@ -22,6 +22,9 @@ class AccountPageFragment : Fragment() {
     private lateinit var mDataBaseReference: DatabaseReference
     private var mCheckRef: DatabaseReference? = null
     private var mMatchRef: DatabaseReference? = null
+    private var mMatchingCheckRef: DatabaseReference? = null
+    private var isMatched : Boolean = false
+
 
 
     override fun onCreateView(
@@ -32,30 +35,34 @@ class AccountPageFragment : Fragment() {
 
     }
     override fun onCreate(savedInstanceState: Bundle?) {
-        val id = requireArguments().getString("id")
         super.onCreate(savedInstanceState)
-        mDataBaseReference = FirebaseDatabase.getInstance().reference
-        val user = FirebaseAuth.getInstance().currentUser
-        mCheckRef = mDataBaseReference.child(FavoritePATH).child(id.toString()).child(user!!.uid)
-        mCheckRef!!.addListenerForSingleValueEvent(mCheckListener)
-        mMatchRef = mDataBaseReference.child(FavoritePATH).child(user!!.uid).child(id.toString())
-        mMatchRef!!.addListenerForSingleValueEvent(mMatchListener)
-
-
     }
-
-
-
 
 
     override fun onResume() {
         super.onResume()
+        val user = FirebaseAuth.getInstance().currentUser
+        val id = requireArguments().getString("id")
+        mDataBaseReference = FirebaseDatabase.getInstance().reference
+
+        //マッチングしている場合はボタンを全て消す
+        val matching = "matching"
+        val all = "all"
+        mMatchingCheckRef = mDataBaseReference.child(AccountPATH).child(all).child(user!!.uid).child(matching).child(id.toString())
+        mMatchingCheckRef!!.addListenerForSingleValueEvent(mMatchingCheckListener)
+
+
+
 
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        match_send_button.visibility = View.INVISIBLE
+        match_send_cansel_button.visibility = View.INVISIBLE
+        match_button.visibility = View.INVISIBLE
 
         val address = requireArguments().getString("address")
         val name = requireArguments().getString("name")
@@ -70,12 +77,11 @@ class AccountPageFragment : Fragment() {
             val imageView =iconImageView as ImageView
             imageView.setImageBitmap(image)
         }
+
         addressText.text = address
         nameText.text = name
         genreText.text = genre
         skillText.text = skill
-
-
 
         match_send_button.setOnClickListener { _ ->
             val database = FirebaseDatabase.getInstance()
@@ -85,6 +91,7 @@ class AccountPageFragment : Fragment() {
             match_send_cansel_button.visibility = View.VISIBLE
             match_send_button.visibility = View.INVISIBLE
         }
+
         match_send_cansel_button.setOnClickListener { _ ->
             val database = FirebaseDatabase.getInstance()
             val favoriteref = database.getReference(FavoritePATH)
@@ -93,11 +100,40 @@ class AccountPageFragment : Fragment() {
             match_send_button.visibility = View.VISIBLE
             match_send_cansel_button.visibility = View.INVISIBLE
         }
+
         match_button.setOnClickListener { _ ->
-
+            val database = FirebaseDatabase.getInstance()
+            val accountref = database.getReference(AccountPATH)
+            val user = FirebaseAuth.getInstance().currentUser
+            val all = "all"
+            val id = requireArguments().getString("id")
+            val matching = "matching"
+            accountref.child(all).child(user!!.uid).child(matching).child(id.toString()).setValue("matchinguser")
+            accountref.child(all).child(id.toString()).child(matching).child(user!!.uid).setValue("matchinguser")
+            val favoriteref = database.getReference(FavoritePATH)
+            favoriteref.child(user!!.uid).child(id.toString()).setValue(null)
+            match_button.visibility = View.INVISIBLE
         }
-    }
 
+    }
+    private val mCheckListener = object : ValueEventListener {
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            Log.d("test_ck", dataSnapshot.toString())
+            Log.d("test_ck", dataSnapshot.key.toString())
+            Log.d("test_ck", dataSnapshot.value.toString())
+            if (dataSnapshot.value == null){
+                match_send_button.visibility = View.VISIBLE
+                match_send_cansel_button.visibility = View.INVISIBLE
+                match_button.visibility = View.INVISIBLE
+            }else{
+                match_send_button.visibility = View.INVISIBLE
+                match_send_cansel_button.visibility = View.VISIBLE
+                match_button.visibility = View.INVISIBLE
+            }
+            return
+        }
+        override fun onCancelled(p0: DatabaseError) {}
+    }
 
     private val mMatchListener = object : ValueEventListener {
         override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -114,25 +150,34 @@ class AccountPageFragment : Fragment() {
         override fun onCancelled(p0: DatabaseError) {}
     }
 
-
-    private val mCheckListener = object : ValueEventListener {
+    private val mMatchingCheckListener = object : ValueEventListener {
         override fun onDataChange(dataSnapshot: DataSnapshot) {
-            Log.d("test_ck", dataSnapshot.toString())
-            Log.d("test_ck", dataSnapshot.key.toString())
-            Log.d("test_ck", dataSnapshot.value.toString())
-            if (dataSnapshot.value == null){
-                match_send_button.visibility = View.VISIBLE
-                match_send_cansel_button.visibility = View.INVISIBLE
-                match_button.visibility = View.INVISIBLE
-            }else{
-                match_send_cansel_button.visibility = View.VISIBLE
-                match_send_button.visibility = View.INVISIBLE
-                match_button.visibility = View.INVISIBLE
+            Log.d("test_ck1", dataSnapshot.toString())
+            Log.d("test_ck1", dataSnapshot.key.toString())
+            Log.d("test_ck1", dataSnapshot.value.toString())
+            val id = requireArguments().getString("id")
+            Log.d("test_ck1", id.toString())
+
+            if(dataSnapshot.value == null){
+                Log.d("test_ck5", dataSnapshot.key.toString())
+                Log.d("test_ck5", id.toString())
+                initUnMatch()
             }
+
             return
         }
         override fun onCancelled(p0: DatabaseError) {}
     }
+    private fun initUnMatch(){
+        val user = FirebaseAuth.getInstance().currentUser
+        //マッチング申請しているかチェック[申請済みは申請キャンセルボタン/申請していなければ申請ボタン]
+        mCheckRef =
+            mDataBaseReference.child(FavoritePATH).child(id.toString()).child(user!!.uid)
+        mCheckRef!!.addListenerForSingleValueEvent(mCheckListener)
 
-
+        //マッチング申請”されているか”チェック[申請されている場合はマッチング承諾ボタン]
+        mMatchRef =
+            mDataBaseReference.child(FavoritePATH).child(user!!.uid).child(id.toString())
+        mMatchRef!!.addListenerForSingleValueEvent(mMatchListener)
+    }
 }

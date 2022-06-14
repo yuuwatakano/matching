@@ -37,17 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/skillText" />
-        <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="マッチングしてます"
-        android:id="@+id/matchText1" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="マッチング申請されてます"
-            android:id="@+id/matchText2" />
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
