@@ -63,6 +63,8 @@ class AccountPageFragment : Fragment() {
         match_send_button.visibility = View.INVISIBLE
         match_send_cansel_button.visibility = View.INVISIBLE
         match_button.visibility = View.INVISIBLE
+        match_delete_button.visibility = View.INVISIBLE
+
 
         val address = requireArguments().getString("address")
         val name = requireArguments().getString("name")
@@ -113,6 +115,20 @@ class AccountPageFragment : Fragment() {
             val favoriteref = database.getReference(FavoritePATH)
             favoriteref.child(user!!.uid).child(id.toString()).setValue(null)
             match_button.visibility = View.INVISIBLE
+            match_delete_button.visibility = View.VISIBLE
+        }
+
+        match_delete_button.setOnClickListener { _ ->
+            val database = FirebaseDatabase.getInstance()
+            val accountref = database.getReference(AccountPATH)
+            val user = FirebaseAuth.getInstance().currentUser
+            val all = "all"
+            val id = requireArguments().getString("id")
+            val matching = "matching"
+            accountref.child(all).child(user!!.uid).child(matching).child(id.toString()).setValue(null)
+            accountref.child(all).child(id.toString()).child(matching).child(user!!.uid).setValue(null)
+            match_delete_button.visibility = View.INVISIBLE
+            match_send_button.visibility = View.VISIBLE
         }
 
     }
@@ -162,6 +178,8 @@ class AccountPageFragment : Fragment() {
                 Log.d("test_ck5", dataSnapshot.key.toString())
                 Log.d("test_ck5", id.toString())
                 initUnMatch(id.toString())
+            }else{
+                match_delete_button.visibility = View.VISIBLE
             }
 
             return
@@ -173,8 +191,6 @@ class AccountPageFragment : Fragment() {
         //マッチング申請しているかチェック[申請済みは申請キャンセルボタン/申請していなければ申請ボタン]
         mCheckRef =
             mDataBaseReference.child(FavoritePATH).child(unMatchUserId).child(user!!.uid)
-        Log.d("test_ck5", "!!!!!!!!!")
-
         Log.d("test_ck5", unMatchUserId)
         Log.d("test_ck5", user!!.uid)
         Log.d("test_ck5", FavoritePATH)

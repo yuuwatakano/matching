@@ -52,6 +52,11 @@
             android:layout_height="wrap_content"
             android:text="マッチング承認ボタン"
             android:id="@+id/match_button" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="マッチング解除"
+            android:id="@+id/match_delete_button" />
 
     </LinearLayout>
 
