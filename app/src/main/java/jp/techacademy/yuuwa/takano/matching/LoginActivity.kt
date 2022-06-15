@@ -229,15 +229,21 @@ class LoginActivity : AppCompatActivity() {
                     }
                         val bit = bitMap
                         val name = nameText.text.toString()
-                        val lineid = lineid_Text.text.toString()
+                        val twitterid = twitter_Text.text.toString()
+                        val soundcloud = soundcloudID_Text.text.toString()
+                        val instagram = instagram_Text.text.toString()
+
+
                         val data = HashMap<String, String>()
                         data["name"] = name
-                        data["lineid"] = lineid
                         data["address"] = addresstext
                         data["genre"] = genretext
                         data["skill"] = skilltext
                         data["id"] = user!!.uid
                         data["image"] = bit
+                        data["twitter"] = twitterid
+                        data["instagram"] = instagram
+                        data["soundcloud"] = soundcloud
                         localRef.setValue(data)
                         allRef.setValue(data)
                     }
@@ -266,10 +272,9 @@ class LoginActivity : AppCompatActivity() {
             val email = emailText.text.toString()
             val password = passwordText.text.toString()
             val name = nameText.text.toString()
-            val lineid = lineid_Text.text.toString()
 
 
-            if (email.length != 0 && password.length >= 6 && name.length != 0 && lineid.length != 0) {
+            if (email.length != 0 && password.length >= 6 && name.length != 0) {
                 // ログイン時に表示名を保存するようにフラグを立てる
                 mIsCreateAccount = true
                 createAccount(email, password)

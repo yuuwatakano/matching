@@ -67,6 +67,9 @@ class LocalFragment : Fragment() {
                     val skill = map["skill"] ?: ""
                     val imageString = map["image"] ?: ""
                     val id = map["id"] ?: ""
+                    val twitterID = map["twitter"] ?: ""
+                    val instagram = map["instagram"] ?: ""
+                    val soundcloud = map["soundcloud"] ?: ""
                     if (id == user!!.uid){
                         return
                     }
@@ -81,7 +84,7 @@ class LocalFragment : Fragment() {
                     Log.d("test_local3", genre)
                     Log.d("test_local3", skill)
 
-                    val account = Account(name, address, genre, skill,id,bytes)
+                    val account = Account(name, address, genre, skill,id,twitterID,instagram,soundcloud,bytes)
                     Log.d("test", account.toString())
                     mAccountArrayList.add(account)
                     mAdapter.notifyDataSetChanged()
@@ -155,6 +158,9 @@ class LocalFragment : Fragment() {
         intent.putExtra("skill",itemModel.skill)
         intent.putExtra("id",itemModel.id)
         intent.putExtra("image",itemModel.imageBytes)
+        intent.putExtra("twitterid",itemModel.twitterid)
+        intent.putExtra("instagramid",itemModel.instagramid)
+        intent.putExtra("soundcloudid",itemModel.soundcloudid)
         startActivity(intent)
     }
 

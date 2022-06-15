@@ -57,6 +57,10 @@ class AllFragment : Fragment() {
             val skill = map["skill"] ?: ""
             val imageString = map["image"] ?: ""
             val id = map["id"] ?: ""
+            val twitterID = map["twitter"] ?: ""
+            val instagram = map["instagram"] ?: ""
+            val soundcloud = map["soundcloud"] ?: ""
+
             val bytes =
                 if (imageString.isNotEmpty()) {
                     Base64.decode(imageString, Base64.DEFAULT)
@@ -73,7 +77,7 @@ class AllFragment : Fragment() {
             Log.d("test_account", skill)
             Log.d("test_account1", imageString)
             Log.d("test_account1", id)
-            val account = Account(name, address, genre, skill,id,bytes)
+            val account = Account(name, address, genre, skill,id,twitterID,instagram,soundcloud,bytes)
             Log.d("test", account.toString())
             mAccountArrayList.add(account)
             mAdapter.notifyDataSetChanged()
@@ -142,6 +146,9 @@ class AllFragment : Fragment() {
         intent.putExtra("skill",itemModel.skill)
         intent.putExtra("id",itemModel.id)
         intent.putExtra("image",itemModel.imageBytes)
+        intent.putExtra("twitterid",itemModel.twitterid)
+        intent.putExtra("instagramid",itemModel.instagramid)
+        intent.putExtra("soundcloudid",itemModel.soundcloudid)
         startActivity(intent)
     }
 

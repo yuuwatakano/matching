@@ -14,6 +14,9 @@ class AccountPageActivity : AppCompatActivity() {
         val genre =intent.getStringExtra("genre")
         val skill =intent.getStringExtra("skill")
         val id =intent.getStringExtra("id")
+        val twitterid =intent.getStringExtra("twitterid")
+        val instagramid =intent.getStringExtra("instagramid")
+        val soundcloudid =intent.getStringExtra("soundcloudid")
         val icon=intent.getByteArrayExtra("image")
         Log.d("tkn2", address.toString())
         Log.d("tkn2", name.toString())
@@ -27,6 +30,9 @@ class AccountPageActivity : AppCompatActivity() {
         args.putString("skill", skill)
         args.putString("id", id)
         args.putByteArray("image", icon)
+        args.putString("twitterid", twitterid)
+        args.putString("instagramid", instagramid)
+        args.putString("soundcloudid", soundcloudid)
 
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
 

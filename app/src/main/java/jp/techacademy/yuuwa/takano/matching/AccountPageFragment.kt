@@ -51,10 +51,6 @@ class AccountPageFragment : Fragment() {
         mMatchingCheckRef = mDataBaseReference.child(AccountPATH).child(all).child(user!!.uid).child(matching).child(id.toString())
         mMatchingCheckRef!!.addListenerForSingleValueEvent(mMatchingCheckListener)
 
-
-
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,6 +68,9 @@ class AccountPageFragment : Fragment() {
         val skill = requireArguments().getString("skill")
         val icon = requireArguments().getByteArray("image")
         val id = requireArguments().getString("id")
+        val twitterid = requireArguments().getString("twitterid")
+        val instagramid = requireArguments().getString("instagramid")
+        val soundcloudid = requireArguments().getString("soundcloudid")
         Log.d("tkn5", id.toString())
 
         if (icon!!.isNotEmpty()) {
@@ -84,6 +83,9 @@ class AccountPageFragment : Fragment() {
         nameText.text = name
         genreText.text = genre
         skillText.text = skill
+        twitterText.text = twitterid
+        instagramText.text = instagramid
+        soundcloudText.text = soundcloudid
 
         match_send_button.setOnClickListener { _ ->
             val database = FirebaseDatabase.getInstance()
@@ -156,10 +158,13 @@ class AccountPageFragment : Fragment() {
             Log.d("test_match", dataSnapshot.toString())
             Log.d("test_match", dataSnapshot.key.toString())
             Log.d("test_match", dataSnapshot.value.toString())
+            val id = requireArguments().getString("id")
             if (dataSnapshot.value != null){
                 match_send_button.visibility = View.INVISIBLE
                 match_send_cansel_button.visibility = View.INVISIBLE
                 match_button.visibility = View.VISIBLE
+            }else{
+                initUnmatchSend(id.toString())
             }
             return
         }
@@ -186,19 +191,25 @@ class AccountPageFragment : Fragment() {
         }
         override fun onCancelled(p0: DatabaseError) {}
     }
+
     private fun initUnMatch(unMatchUserId:String){
         val user = FirebaseAuth.getInstance().currentUser
-        //マッチング申請しているかチェック[申請済みは申請キャンセルボタン/申請していなければ申請ボタン]
-        mCheckRef =
-            mDataBaseReference.child(FavoritePATH).child(unMatchUserId).child(user!!.uid)
-        Log.d("test_ck5", unMatchUserId)
-        Log.d("test_ck5", user!!.uid)
-        Log.d("test_ck5", FavoritePATH)
-        mCheckRef!!.addListenerForSingleValueEvent(mCheckListener)
 
         //マッチング申請”されているか”チェック[申請されている場合はマッチング承諾ボタン]
         mMatchRef =
             mDataBaseReference.child(FavoritePATH).child(user!!.uid).child(unMatchUserId)
         mMatchRef!!.addListenerForSingleValueEvent(mMatchListener)
+    }
+
+    private fun initUnmatchSend(unMatchUserSendId:String){
+        val user = FirebaseAuth.getInstance().currentUser
+
+        //マッチング申請しているかチェック[申請済みは申請キャンセルボタン/申請していなければ申請ボタン]
+        mCheckRef =
+            mDataBaseReference.child(FavoritePATH).child(unMatchUserSendId).child(user!!.uid)
+        Log.d("test_ck6", unMatchUserSendId)
+        Log.d("test_ck5", user!!.uid)
+        Log.d("test_ck5", FavoritePATH)
+        mCheckRef!!.addListenerForSingleValueEvent(mCheckListener)
     }
 }

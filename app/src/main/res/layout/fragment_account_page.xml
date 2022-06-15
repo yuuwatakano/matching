@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/nameText" />
 
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,6 +38,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/skillText" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/twitterText" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instagramText" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/soundcloudText" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,6 +70,21 @@
             android:layout_height="wrap_content"
             android:text="マッチング解除"
             android:id="@+id/match_delete_button" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="twitter"
+            android:id="@+id/twitter" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="instagram"
+            android:id="@+id/instagram" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="soundcloud"
+            android:id="@+id/soundcloud" />
 
     </LinearLayout>
 
