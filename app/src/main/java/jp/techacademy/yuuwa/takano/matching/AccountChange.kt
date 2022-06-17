@@ -155,10 +155,10 @@ class AccountChange : AppCompatActivity() {
             if(change_twitter_Text.length() == 0){
                 twitterdata = twitterid.toString()
             }
-            if(change_instagram_Text.length() == 0){
+            if(change_soundcloudID_Text.length() == 0){
                 soundclouddata = soundcloudid.toString()
             }
-            if(change_soundcloudID_Text.length() == 0){
+            if(change_instagram_Text.length() == 0){
                 instagramdata = instagramid.toString()
             }
 
@@ -171,19 +171,6 @@ class AccountChange : AppCompatActivity() {
             mDataBaseReference.child(AccountPATH).child(local).child(address).child(genre).child(user!!.uid).updateChildren(sender)
             mDataBaseReference.child(AccountPATH).child(all).child(id).updateChildren(sender)
 
-
-//            val data = HashMap<String, String>()
-//            data["name"] = namedata
-//            data["image"] = bit
-//            data["twitter"] = twitterdata
-//            data["instagram"] = instagramdata
-//            data["soundcloud"] = soundclouddata
-//            data["address"] = address
-//            data["genre"] = genre
-//            data["skill"] = skill
-//            data["id"] = user!!.uid
-//            localRef.setValue(data)
-//            allRef.setValue(data)
             finish()
         }
         change_imageView.setOnClickListener { v ->

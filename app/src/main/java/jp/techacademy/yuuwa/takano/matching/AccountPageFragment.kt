@@ -1,8 +1,11 @@
 package jp.techacademy.yuuwa.takano.matching
 
+import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
@@ -10,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import com.google.firebase.auth.FirebaseAuth
@@ -133,6 +137,22 @@ class AccountPageFragment : Fragment() {
             match_send_button.visibility = View.VISIBLE
         }
 
+        twitter.setOnClickListener {
+
+        }
+        instagram.setOnClickListener {
+
+        }
+        soundcloud.setOnClickListener{
+
+        }
+
+
+
+
+
+
+
     }
     private val mCheckListener = object : ValueEventListener {
         override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -212,4 +232,60 @@ class AccountPageFragment : Fragment() {
         Log.d("test_ck5", FavoritePATH)
         mCheckRef!!.addListenerForSingleValueEvent(mCheckListener)
     }
+
+
+
+
+    fun navigateToSoundCloud(userId: String, context: Context) {
+        val url = "https://soundcloud.com/$userId"
+        try {
+            Intent(Intent.ACTION_VIEW).also {
+                it.setPackage("com.google.android.youtube")
+                it.data = Uri.parse(url)
+                context.startActivity(it)
+            }
+        } catch (e: ActivityNotFoundException) {
+            navigateToCustomTab(url, context)
+        }
+    }
+
+    //Instagram
+    fun navigateToInstagramUserPage(userId: String, context: Context) {
+        val url = "http://instagram.com/$userId"
+        try {
+            Intent(Intent.ACTION_VIEW).also {
+                it.setPackage("com.instagram.android")
+                it.data = Uri.parse(url)
+                context.startActivity(it)
+            }
+        } catch (e: ActivityNotFoundException) {
+            navigateToCustomTab(url, context)
+        }
+    }
+
+    //Twitter
+    fun navigateToTwitterUserPage(userId: String, context: Context) {
+        val url = "https://twitter.com/$userId"
+        try {
+            Intent(Intent.ACTION_VIEW).also {
+                it.setPackage("com.twitter.android")
+                it.data = Uri.parse(url)
+                context.startActivity(it)
+            }
+        } catch (e: ActivityNotFoundException) {
+            navigateToCustomTab(url, context)
+        }
+    }
+
+    //Custom Tab
+    fun navigateToCustomTab(url: String, context: Context) {
+        val uri = Uri.parse(url)
+        CustomTabsIntent.Builder().also { builder ->
+            builder.setShowTitle(true)
+            builder.build().also {
+                it.launchUrl(context, uri)
+            }
+        }
+    }
+
 }
