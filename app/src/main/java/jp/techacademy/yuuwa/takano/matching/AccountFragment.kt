@@ -24,7 +24,7 @@ import java.io.ByteArrayOutputStream
 class AccountFragment : Fragment() {
     private lateinit var mDatabaseReference: DatabaseReference
     private var mAccountRef: DatabaseReference? = null
-
+    private var settingFrag:Boolean = false
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,10 +38,6 @@ class AccountFragment : Fragment() {
         override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
             Log.d("test_account", dataSnapshot.toString())
             Log.d("test_account", dataSnapshot.value.toString())
-            if (dataSnapshot.value == null){
-                return
-            }
-
             val map = dataSnapshot.value as Map<String, String>
 
             var name = map["name"] ?: ""
@@ -72,6 +68,29 @@ class AccountFragment : Fragment() {
             Log.d("test_account1", twitterID)
             Log.d("test_account1", instagram)
             Log.d("test_account1", soundcloud)
+            if (settingFrag) {
+                val intent = Intent(context, AccountChange::class.java)
+                intent.putExtra("loginaddress", address.toString())
+                intent.putExtra("loginname", name.toString())
+                intent.putExtra("logingenre", genre.toString())
+                intent.putExtra("loginskill", skill.toString())
+                intent.putExtra("loginid", id.toString())
+                intent.putExtra("loginimage", bytes)
+                intent.putExtra("logintwitterid", twitterID.toString())
+                intent.putExtra("logininstagramid", instagram.toString())
+                intent.putExtra("loginsoundcloudid", soundcloud.toString())
+                settingFrag = false
+                startActivity(intent)
+            }
+            Log.d("tkn8", address.toString())
+            Log.d("tkn8", name.toString())
+            Log.d("tkn8", genre.toString())
+            Log.d("tkn8", skill.toString())
+            Log.d("tkn8", id.toString())
+            Log.d("tkn8", bytes.toString())
+            Log.d("tkn8", twitterID.toString())
+            Log.d("tkn8", instagram.toString())
+            Log.d("tkn8", soundcloud.toString())
 
             account_address.text = address
             account_name.text = name
@@ -128,6 +147,15 @@ class AccountFragment : Fragment() {
         logout.setOnClickListener { _ ->
             FirebaseAuth.getInstance().signOut()
             startActivity(Intent(context, LoginActivity::class.java))
+        }
+        accountChange.setOnClickListener {
+            settingFrag = true
+            val user = FirebaseAuth.getInstance().currentUser
+            Log.v("test_user1","ログインした ID:"+ user?.uid!!)
+            mDatabaseReference = FirebaseDatabase.getInstance().reference
+            val all = "all"
+            mAccountRef = mDatabaseReference.child(AccountPATH).child(all)
+            mAccountRef!!.addChildEventListener(mAccountListener)
         }
     }
 }

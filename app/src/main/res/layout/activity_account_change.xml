@@ -5,5 +5,90 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AccountChange">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AccountChange">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/change_imageView"
+            android:background="#d3d3d3"
+            android:layout_centerHorizontal="true"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login_name_hint"
+            android:id="@+id/change_nameText" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="twitterID"
+            android:id="@+id/change_twitter_Text" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="instagramID"
+            android:id="@+id/change_instagram_Text" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="soundcloudID"
+            android:id="@+id/change_soundcloudID_Text" />
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="@string/address_info"-->
+<!--            android:id="@+id/address_info" />-->
+
+<!--        <Spinner-->
+<!--            android:id="@+id/change_address_spinner"-->
+<!--            android:spinnerMode="dialog"-->
+<!--            android:background="#ffe4e1"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="40dp" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="@string/genre_info"-->
+<!--            android:id="@+id/genre_info" />-->
+
+<!--        <Spinner-->
+<!--            android:id="@+id/change_genre_spinner"-->
+<!--            android:spinnerMode="dialog"-->
+<!--            android:background="#e0ffff"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="40dp" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="@string/skill_info"-->
+<!--            android:id="@+id/skill_info" />-->
+
+<!--        <Spinner-->
+<!--            android:id="@+id/change_skill_spinner"-->
+<!--            android:spinnerMode="dialog"-->
+<!--            android:background="#7fffd4"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="40dp" />-->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="保存"
+            android:id="@+id/saveButton" />
+
+    </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
