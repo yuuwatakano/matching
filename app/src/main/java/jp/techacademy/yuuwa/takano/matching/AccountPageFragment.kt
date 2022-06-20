@@ -64,10 +64,13 @@ class AccountPageFragment : Fragment() {
         match_send_cansel_button.visibility = View.INVISIBLE
         match_button.visibility = View.INVISIBLE
         match_delete_button.visibility = View.INVISIBLE
-
+        twitter_button.visibility = View.INVISIBLE
+        instagram_button.visibility = View.INVISIBLE
+        soundcloud_button.visibility = View.INVISIBLE
 
         val address = requireArguments().getString("address")
         val name = requireArguments().getString("name")
+        val profile = requireArguments().getString("profile")
         val genre = requireArguments().getString("genre")
         val skill = requireArguments().getString("skill")
         val icon = requireArguments().getByteArray("image")
@@ -85,6 +88,7 @@ class AccountPageFragment : Fragment() {
 
         addressText.text = address
         nameText.text = name
+        profileText.text = profile
         genreText.text = genre
         skillText.text = skill
         twitterText.text = twitterid
@@ -137,14 +141,14 @@ class AccountPageFragment : Fragment() {
             match_send_button.visibility = View.VISIBLE
         }
 
-        twitter.setOnClickListener {
-
+        twitter_button.setOnClickListener {
+            context?.let { it1 -> navigateToTwitterUserPage(twitterid.toString(), it1) }
         }
-        instagram.setOnClickListener {
-
+        instagram_button.setOnClickListener {
+            context?.let { it1 -> navigateToInstagramUserPage(instagramid.toString(), it1) }
         }
-        soundcloud.setOnClickListener{
-
+        soundcloud_button.setOnClickListener{
+            context?.let { it1 -> navigateToSoundCloud(soundcloudid.toString(), it1) }
         }
 
 
@@ -205,6 +209,9 @@ class AccountPageFragment : Fragment() {
                 initUnMatch(id.toString())
             }else{
                 match_delete_button.visibility = View.VISIBLE
+                twitter_button.visibility = View.VISIBLE
+                instagram_button.visibility = View.VISIBLE
+                soundcloud_button.visibility = View.VISIBLE
             }
 
             return
@@ -240,7 +247,7 @@ class AccountPageFragment : Fragment() {
         val url = "https://soundcloud.com/$userId"
         try {
             Intent(Intent.ACTION_VIEW).also {
-                it.setPackage("com.google.android.youtube")
+                it.setPackage("com.soundcloud.android")
                 it.data = Uri.parse(url)
                 context.startActivity(it)
             }

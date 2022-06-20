@@ -59,6 +59,7 @@ class MatchFragment : Fragment() {
                     val user = FirebaseAuth.getInstance().currentUser
                     Log.d("test_local1", Snapshot.toString())
                     val name = map["name"] ?: ""
+                    val profile = map["profile"] ?: ""
                     val address = map["address"] ?: ""
                     val genre = map["genre"] ?: ""
                     val skill = map["skill"] ?: ""
@@ -81,7 +82,7 @@ class MatchFragment : Fragment() {
                     Log.d("test_local3", genre)
                     Log.d("test_local3", skill)
 
-                    val account = Account(name, address, genre, skill,id,twitterID,instagram,soundcloud,bytes)
+                    val account = Account(name,profile ,address, genre, skill,id,twitterID,instagram,soundcloud,bytes)
                     Log.d("test", account.toString())
                     mAccountArrayList.add(account)
                     mAdapter.notifyDataSetChanged()
@@ -155,6 +156,7 @@ class MatchFragment : Fragment() {
         val intent = Intent(activity, AccountPageActivity::class.java)
         intent.putExtra("address",itemModel.address)
         intent.putExtra("name",itemModel.name)
+        intent.putExtra("profile",itemModel.profile)
         intent.putExtra("genre",itemModel.genre)
         intent.putExtra("skill",itemModel.skill)
         intent.putExtra("id",itemModel.id)

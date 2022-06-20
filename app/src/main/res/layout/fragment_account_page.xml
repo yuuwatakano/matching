@@ -5,7 +5,10 @@
     android:layout_height="match_parent"
     android:background="#bdb76b"
     tools:context=".AccountPageFragment">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".LoginActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,6 +31,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/nameText" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profileText" />
 
         <TextView
             android:layout_width="match_parent"
@@ -74,18 +81,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="twitter"
-            android:id="@+id/twitter" />
+            android:id="@+id/twitter_button" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="instagram"
-            android:id="@+id/instagram" />
+            android:id="@+id/instagram_button" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="soundcloud"
-            android:id="@+id/soundcloud" />
+            android:id="@+id/soundcloud_button" />
 
     </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

@@ -96,6 +96,7 @@ class AccountChange : AppCompatActivity() {
 
         val address =intent.getStringExtra("loginaddress")
         val name =intent.getStringExtra("loginname")
+        val profile =intent.getStringExtra("loginprofile")
         val genre =intent.getStringExtra("logingenre")
         val skill =intent.getStringExtra("loginskill")
         val id =intent.getStringExtra("loginid")
@@ -144,14 +145,19 @@ class AccountChange : AppCompatActivity() {
             }
 
             val bit = bitMap
-            var namedata = change_nameText.text.toString()
-            var twitterdata = change_twitter_Text.text.toString()
-            var soundclouddata = change_soundcloudID_Text.text.toString()
-            var instagramdata = change_instagram_Text.text.toString()
+            var namedata = change_nameText.text.toString().trim()
+            var profiledata = change_profileText.text.toString().trim()
+            var twitterdata = change_twitter_Text.text.toString().trim()
+            var soundclouddata = change_soundcloudID_Text.text.toString().trim()
+            var instagramdata = change_instagram_Text.text.toString().trim()
 
             if(change_nameText.length() == 0){
                 namedata = name.toString()
             }
+            if(change_profileText.length() == 0){
+                profiledata = profile.toString()
+            }
+
             if(change_twitter_Text.length() == 0){
                 twitterdata = twitterid.toString()
             }
@@ -165,6 +171,7 @@ class AccountChange : AppCompatActivity() {
             val sender: MutableMap<String, Any> = HashMap()
             sender["name"] = namedata
             sender["image"] = bit
+            sender["profile"] = profiledata
             sender["twitter"] = twitterdata
             sender["instagram"] = instagramdata
             sender["soundcloud"] = soundclouddata

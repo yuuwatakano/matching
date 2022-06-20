@@ -228,14 +228,15 @@ class LoginActivity : AppCompatActivity() {
                         bitMap = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT)
                     }
                         val bit = bitMap
-                        val name = nameText.text.toString()
-                        val twitterid = twitter_Text.text.toString()
-                        val soundcloud = soundcloudID_Text.text.toString()
-                        val instagram = instagram_Text.text.toString()
-
+                        val name = nameText.text.toString().trim()
+//                        val profiledata = profileText.toString().trim()
+                        val twitterid = twitter_Text.text.toString().trim()
+                        val soundcloud = soundcloudID_Text.text.toString().trim()
+                        val instagram = instagram_Text.text.toString().trim()
 
                         val data = HashMap<String, String>()
                         data["name"] = name
+//                        data["profile"] = profiledata
                         data["address"] = addresstext
                         data["genre"] = genretext
                         data["skill"] = skilltext

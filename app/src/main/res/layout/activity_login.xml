@@ -55,6 +55,11 @@
             android:layout_height="wrap_content"
             android:hint="@string/login_name_hint"
             android:id="@+id/nameText" />
+<!--        <EditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="自己紹介"-->
+<!--            android:id="@+id/profileText" />-->
 
         <EditText
             android:layout_width="match_parent"

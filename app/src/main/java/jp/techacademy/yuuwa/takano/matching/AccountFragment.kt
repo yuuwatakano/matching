@@ -41,6 +41,7 @@ class AccountFragment : Fragment() {
             val map = dataSnapshot.value as Map<String, String>
 
             var name = map["name"] ?: ""
+            var profile = map["profile"] ?: ""
             var address = map["address"] ?: ""
             var genre = map["genre"] ?: ""
             var skill = map["skill"] ?: ""
@@ -72,6 +73,7 @@ class AccountFragment : Fragment() {
                 val intent = Intent(context, AccountChange::class.java)
                 intent.putExtra("loginaddress", address.toString())
                 intent.putExtra("loginname", name.toString())
+                intent.putExtra("loginprofile", profile.toString())
                 intent.putExtra("logingenre", genre.toString())
                 intent.putExtra("loginskill", skill.toString())
                 intent.putExtra("loginid", id.toString())
@@ -94,6 +96,7 @@ class AccountFragment : Fragment() {
 
             account_address.text = address
             account_name.text = name
+            account_profile.text = profile
             account_genre.text = genre
             account_skill.text = skill
             account_twitter.text = twitterID
