@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
@@ -103,6 +104,7 @@ class AllFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        all_progress_bar.visibility = View.VISIBLE
         mAccountArrayList = ArrayList<Account>()
         mDatabaseReference = FirebaseDatabase.getInstance().reference
         mAdapter = AccountViewAdapter(mAccountArrayList,
@@ -115,13 +117,14 @@ class AllFragment : Fragment() {
         mAccountRef = mDatabaseReference.child(AccountPATH).child(all)
         mAccountRef!!.addChildEventListener(mAccountListener)
 
-
         this.recyclerView?.apply {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(context,1)
             itemAnimator = DefaultItemAnimator()
             adapter = mAdapter
         }
+        all_progress_bar.visibility = View.GONE
+
     }
 
 

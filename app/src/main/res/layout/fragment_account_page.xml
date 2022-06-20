@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#bdb76b"
     tools:context=".AccountPageFragment">
     <ScrollView
@@ -13,13 +14,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <ImageView
+
+        <androidx.cardview.widget.CardView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/iconImageView"
-            android:layout_margin="2dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            app:cardCornerRadius="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="32dp"
+                android:text="NO IMAGE"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/no_images"
+                />
+
+            <ImageView
+                android:id="@+id/iconImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                />
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:layout_width="match_parent"
@@ -77,20 +99,23 @@
             android:layout_height="wrap_content"
             android:text="マッチング解除"
             android:id="@+id/match_delete_button" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:text="twitter"
+            android:src="@drawable/twitter_icon"
             android:id="@+id/twitter_button" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:text="instagram"
+            android:src="@drawable/instagram_icon"
             android:id="@+id/instagram_button" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:text="soundcloud"
+            android:src="@drawable/soundcloud_1"
             android:id="@+id/soundcloud_button" />
 
     </LinearLayout>

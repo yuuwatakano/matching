@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,6 +17,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_all.*
+import kotlinx.android.synthetic.main.fragment_all.swipeRefreshLayout
+import kotlinx.android.synthetic.main.fragment_local.*
+import kotlinx.android.synthetic.main.fragment_match.*
 
 class MatchFragment : Fragment() {
     private var recyclerView: RecyclerView? = null
@@ -33,7 +37,6 @@ class MatchFragment : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_match, container, false)
-
     }
 
     //Account配列にデータを受け渡すリスナー　ここから
@@ -114,6 +117,7 @@ class MatchFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        match_progress_bar.visibility = View.VISIBLE
         mAccountArrayList = ArrayList<Account>()
         mDatabaseReference = FirebaseDatabase.getInstance().reference
         mAdapter = AccountViewAdapter(mAccountArrayList,
@@ -127,14 +131,13 @@ class MatchFragment : Fragment() {
         val user = FirebaseAuth.getInstance().currentUser
         mAccountRef = mDatabaseReference.child(AccountPATH).child(all).child(user!!.uid).child(matching)
         mAccountRef!!.addChildEventListener(mAccountListener)
-
-
         this.recyclerView?.apply {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(context,1)
             itemAnimator = DefaultItemAnimator()
             adapter = mAdapter
         }
+        match_progress_bar.visibility = View.GONE
     }
 
 

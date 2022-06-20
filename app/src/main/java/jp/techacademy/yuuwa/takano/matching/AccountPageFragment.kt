@@ -78,6 +78,9 @@ class AccountPageFragment : Fragment() {
         val twitterid = requireArguments().getString("twitterid")
         val instagramid = requireArguments().getString("instagramid")
         val soundcloudid = requireArguments().getString("soundcloudid")
+
+
+
         Log.d("tkn5", id.toString())
 
         if (icon!!.isNotEmpty()) {
@@ -163,6 +166,8 @@ class AccountPageFragment : Fragment() {
             Log.d("test_ck", dataSnapshot.toString())
             Log.d("test_ck", dataSnapshot.key.toString())
             Log.d("test_ck", dataSnapshot.value.toString())
+
+
             if (dataSnapshot.value == null){
                 match_send_button.visibility = View.VISIBLE
                 match_send_cansel_button.visibility = View.INVISIBLE
@@ -203,17 +208,17 @@ class AccountPageFragment : Fragment() {
             val id = requireArguments().getString("id")
             Log.d("test_ck1", id.toString())
 
+
+
             if(dataSnapshot.value == null){
-                Log.d("test_ck5", dataSnapshot.key.toString())
-                Log.d("test_ck5", id.toString())
                 initUnMatch(id.toString())
+
             }else{
                 match_delete_button.visibility = View.VISIBLE
                 twitter_button.visibility = View.VISIBLE
                 instagram_button.visibility = View.VISIBLE
                 soundcloud_button.visibility = View.VISIBLE
             }
-
             return
         }
         override fun onCancelled(p0: DatabaseError) {}
@@ -294,5 +299,4 @@ class AccountPageFragment : Fragment() {
             }
         }
     }
-
 }

@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -17,6 +18,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_account_page.*
 import kotlinx.android.synthetic.main.fragment_all.*
+import kotlinx.android.synthetic.main.fragment_all.swipeRefreshLayout
+import kotlinx.android.synthetic.main.fragment_local.*
 
 class LocalFragment : Fragment() {
     private var recyclerView: RecyclerView? = null
@@ -112,7 +115,7 @@ class LocalFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
+        local_progress_bar.visibility = View.VISIBLE
         mAccountArrayList = ArrayList<Account>()
         mDatabaseReference = FirebaseDatabase.getInstance().reference
         mAdapter = AccountViewAdapter(mAccountArrayList,
@@ -129,14 +132,14 @@ class LocalFragment : Fragment() {
         }else{
             startActivity(Intent(context, LoginActivity::class.java))
         }
-
-
         this.recyclerView?.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             itemAnimator = DefaultItemAnimator()
             adapter = mAdapter
         }
+        local_progress_bar.visibility = View.GONE
+
     }
 
     override fun onDestroyView() {
