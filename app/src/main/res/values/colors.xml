@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimary">#326273</color>
     <color name="colorlavenderblush">#fff0f5</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="colorButtonText">#FFFFFF</color>
     <color name="colorSkyblue">#87CEEB</color>
     <color name="colorBlack">#000000</color>
     <color name="colorpink">#ff69b4</color>
+    <color name="colorgreen">#326273</color>
 </resources>

@@ -1,124 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="6dp"
     app:cardElevation="6dp"
-    app:contentPadding="8dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    app:contentPadding="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="270dp">
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="5dp"
-            app:cardCornerRadius="100dp"
-            android:layout_centerHorizontal = "true"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/card"
-            >
+            android:layout_marginTop="5dp"
+            app:cardCornerRadius="100dp">
 
             <TextView
+                android:id="@+id/no_images"
                 android:layout_width="70dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="40dp"
                 android:text="NO IMAGE"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:id="@+id/no_images"
-                />
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <ImageView
                 android:id="@+id/iconImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                />
+                android:scaleType="centerCrop" />
 
         </androidx.cardview.widget.CardView>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/card"
-        android:textSize="60sp"
-        android:gravity="center_horizontal"
-        android:layout_centerHorizontal = "true"
-        android:id="@+id/nameTextView"
-        android:text="name"
-
-        />
-
-
-    <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_below="@+id/nameTextView"
-    android:textSize="30sp"
-    android:gravity="center_horizontal"
-    android:layout_centerHorizontal = "true"
-    android:id="@+id/addressTextView"
-    android:text="address"
-        />
-
-        <ImageView
+        <TextView
+            android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/addressTextView"
+            android:layout_below="@+id/card"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:text="name"
+            android:textSize="40sp"
+            />
+
+
+        <TextView
+            android:id="@+id/addressTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/nameTextView"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/ic_baseline_place"
-            android:id="@+id/place" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center_horizontal"
+            android:text="address"
+            android:textSize="20sp" />
 
         <ImageView
+            android:id="@+id/place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameTextView"
+            android:layout_marginTop="4dp"
+            android:layout_toLeftOf="@+id/addressTextView"
+            android:src="@drawable/ic_baseline_place" />
+
+        <ImageView
+            android:id="@+id/skillicon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/addressTextView"
             android:layout_toLeftOf="@+id/skillTextView"
-
-            android:src="@drawable/ic_baseline_brush"
-            android:id="@+id/skillicon" />
+            android:src="@drawable/ic_baseline_brush" />
 
 
         <TextView
+            android:id="@+id/skillTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/addressTextView"
+            android:layout_centerHorizontal="true"
             android:layout_toRightOf="@+id/addressTextView"
-            android:textSize="15sp"
             android:gravity="center_horizontal"
-            android:layout_centerHorizontal = "true"
-            android:id="@+id/skillTextView"
             android:text="skill"
-            />
+            android:textSize="16sp" />
 
         <ImageView
+            android:id="@+id/genreicon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/addressTextView"
             android:layout_toLeftOf="@+id/genreTextView"
-            android:src="@drawable/ic_baseline_music_note"
-            android:id="@+id/genreicon" />
+            android:src="@drawable/ic_baseline_music_note" />
 
 
         <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/addressTextView"
-        android:layout_toLeftOf="@+id/addressTextView"
-        android:textSize="15sp"
-        android:gravity="center_horizontal"
-        android:layout_centerHorizontal = "true"
-        android:text="genre"
-        android:id="@+id/genreTextView"
-        />
-</RelativeLayout>
-    </androidx.cardview.widget.CardView>
+            android:id="@+id/genreTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addressTextView"
+            android:layout_centerHorizontal="true"
+            android:layout_toLeftOf="@+id/addressTextView"
+            android:gravity="center_horizontal"
+            android:text="genre"
+            android:textSize="16sp" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

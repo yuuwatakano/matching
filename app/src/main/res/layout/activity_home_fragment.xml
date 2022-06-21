@@ -25,7 +25,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabTextColor="@color/colorgreen"
+        app:tabSelectedTextColor="#5c9ead"
+        >
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/local"

@@ -79,43 +79,47 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/soundcloudText" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_match_send_blue"
             android:text="マッチング申請ボタン"
             android:id="@+id/match_send_button" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_match_send_cancel"
             android:text="マッチング申請取り消しボタン"
             android:id="@+id/match_send_cansel_button" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_matching"
             android:text="マッチング承認ボタン"
             android:id="@+id/match_button" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_match_send_cancel"
             android:text="マッチング解除"
             android:id="@+id/match_delete_button" />
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="twitter"
-            android:src="@drawable/twitter_icon"
+            android:src="@drawable/ic_twitter"
             android:id="@+id/twitter_button" />
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="instagram"
-            android:src="@drawable/instagram_icon"
+            android:src="@drawable/ic_instagram"
             android:id="@+id/instagram_button" />
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="soundcloud"
-            android:src="@drawable/soundcloud_1"
+            android:src="@drawable/ic_soundcloud"
             android:id="@+id/soundcloud_button" />
 
     </LinearLayout>
