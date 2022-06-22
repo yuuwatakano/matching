@@ -1,9 +1,12 @@
 package jp.techacademy.yuuwa.takano.matching
 
+import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
@@ -12,6 +15,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -139,16 +144,15 @@ class AccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val user = FirebaseAuth.getInstance().currentUser
         Log.v("test_user", user.toString())
 
-        val loginbutton = view.findViewById<Button>(R.id.login)
-        loginbutton.setOnClickListener {
+        login.setOnClickListener {
             startActivity(Intent(context, LoginActivity::class.java))
         }
         logout.setOnClickListener { _ ->
             FirebaseAuth.getInstance().signOut()
+            Toast.makeText(context, "ログアウトしました", Toast.LENGTH_SHORT).show()
             startActivity(Intent(context, LoginActivity::class.java))
         }
         accountChange.setOnClickListener {
@@ -160,5 +164,9 @@ class AccountFragment : Fragment() {
             mAccountRef = mDatabaseReference.child(AccountPATH).child(all)
             mAccountRef!!.addChildEventListener(mAccountListener)
         }
+
+
+
     }
 }
+

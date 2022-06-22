@@ -49,7 +49,7 @@
             android:fontFamily="sans-serif"
             android:gravity="center_horizontal"
             android:text="name"
-            android:textSize="40sp"
+            android:textSize="25sp"
             />
 
 
@@ -60,10 +60,10 @@
             android:layout_below="@+id/nameTextView"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="2dp"
-            android:fontFamily="sans-serif-black"
+            android:fontFamily="sans-serif"
             android:gravity="center_horizontal"
             android:text="address"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
 
         <ImageView
             android:id="@+id/place"

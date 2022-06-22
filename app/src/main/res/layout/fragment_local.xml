@@ -26,6 +26,8 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/accountlistView"
+                android:background="#5c9ead"
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

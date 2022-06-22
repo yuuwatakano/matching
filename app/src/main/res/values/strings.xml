@@ -4,7 +4,7 @@
     <string name="app_name">match</string>
     <string name="login_email_hint">メールアドレス</string>
     <string name="login_pass_hint">パスワード（6文字以上）</string>
-    <string name="login_name_hint">ニックネーム</string>
+    <string name="login_name_hint">ニックネーム＜10字＞</string>
     <string name="login_createbutton_text">アカウント作成</string>
     <string name="login_lineid_text">LINEID(マッチングの際に公開されます)</string>
     <string name="login_title">ログイン</string>

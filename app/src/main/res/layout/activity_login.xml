@@ -1,127 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
+    android:background="#eeeeee"
     android:paddingLeft="16dp"
-    android:paddingRight="16dp"
     android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
     tools:context=".LoginActivity">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".LoginActivity">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:id="@+id/imageView"
-            android:background="#d3d3d3"
-            android:layout_centerHorizontal="true"/>
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/emailText"
-            android:hint="@string/login_email_hint" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="@string/login_pass_hint"
-            android:id="@+id/passwordText" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                app:cardCornerRadius="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/login_title"
-            android:id="@+id/loginButton" />
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:background="#d3d3d3"
+                    android:scaleType="centerCrop" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/login_createaccountinfo_text"
-            android:id="@+id/login_createaccountinfo_text" />
+            </androidx.cardview.widget.CardView>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/login_name_hint"
-            android:id="@+id/nameText" />
-<!--        <EditText-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="自己紹介"-->
-<!--            android:id="@+id/profileText" />-->
+            <EditText
+                android:id="@+id/emailText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/login_email_hint" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="twitterID"
-            android:id="@+id/twitter_Text" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="instagramID"
-            android:id="@+id/instagram_Text" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="soundcloudID"
-            android:id="@+id/soundcloudID_Text" />
+            <EditText
+                android:id="@+id/passwordText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/login_pass_hint"
+                android:inputType="textPassword" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/address_info"
-            android:id="@+id/address_info" />
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/login_title" />
 
-        <Spinner
-            android:id="@+id/address_spinner"
-            android:spinnerMode="dialog"
-            android:background="#ffe4e1"
-            android:layout_width="100dp"
-            android:layout_height="40dp" />
+            <TextView
+                android:id="@+id/login_createaccountinfo_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/login_createaccountinfo_text" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/genre_info"
-            android:id="@+id/genre_info" />
+            <EditText
+                android:id="@+id/nameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/login_name_hint" />
+            <!--        <EditText-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:hint="自己紹介"-->
+            <!--            android:id="@+id/profileText" />-->
 
-        <Spinner
-            android:id="@+id/genre_spinner"
-            android:spinnerMode="dialog"
-            android:background="#e0ffff"
-            android:layout_width="100dp"
-            android:layout_height="40dp" />
+            <EditText
+                android:id="@+id/twitter_Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="twitterID" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/skill_info"
-            android:id="@+id/skill_info" />
+            <EditText
+                android:id="@+id/instagram_Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="instagramID" />
 
-        <Spinner
-            android:id="@+id/skill_spinner"
-            android:spinnerMode="dialog"
-            android:background="#7fffd4"
-            android:layout_width="100dp"
-            android:layout_height="40dp" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/login_createbutton_text"
-            android:id="@+id/createButton" />
+            <EditText
+                android:id="@+id/soundcloudID_Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="soundcloudID" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/address_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/address_info" />
+
+            <Spinner
+                android:id="@+id/address_spinner"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:background="#ffe4e1"
+                android:spinnerMode="dialog" />
+
+            <TextView
+                android:id="@+id/genre_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/genre_info" />
+
+            <Spinner
+                android:id="@+id/genre_spinner"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:background="#e0ffff"
+                android:spinnerMode="dialog" />
+
+            <TextView
+                android:id="@+id/skill_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/skill_info" />
+
+            <Spinner
+                android:id="@+id/skill_spinner"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:background="#7fffd4"
+                android:spinnerMode="dialog" />
+
+            <Button
+                android:id="@+id/createButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/login_createbutton_text" />
+
+        </LinearLayout>
     </ScrollView>
 </RelativeLayout>

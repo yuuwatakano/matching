@@ -6,5 +6,7 @@
         <item name="colorPrimaryDark">@color/colorButtonText</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="Theme.YourAppName" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    </style>
 
 </resources>

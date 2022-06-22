@@ -22,6 +22,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.AuthResult
@@ -248,16 +249,15 @@ class LoginActivity : AppCompatActivity() {
                         localRef.setValue(data)
                         allRef.setValue(data)
                     }
+                Toast.makeText(this, "ログインしました", Toast.LENGTH_SHORT).show()
 
                 // Activityを閉じる
                 finish()
 
             } else {
-                // 失敗した場合
-                // エラーを表示する
-                val view = findViewById<View>(android.R.id.content)
-                Snackbar.make(view, getString(R.string.login_failure_message), Snackbar.LENGTH_LONG)
-                    .show()
+
+                Toast.makeText(this, "ログインに失敗しました", Toast.LENGTH_SHORT).show()
+
 
             }
         }

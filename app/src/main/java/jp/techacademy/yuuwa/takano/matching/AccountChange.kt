@@ -16,6 +16,7 @@ import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -177,6 +178,7 @@ class AccountChange : AppCompatActivity() {
             sender["soundcloud"] = soundclouddata
             mDataBaseReference.child(AccountPATH).child(local).child(address).child(genre).child(user!!.uid).updateChildren(sender)
             mDataBaseReference.child(AccountPATH).child(all).child(id).updateChildren(sender)
+            Toast.makeText(this, "編集内容を保存", Toast.LENGTH_SHORT).show()
 
             finish()
         }
@@ -199,7 +201,10 @@ class AccountChange : AppCompatActivity() {
 
 
         }
-
+        cancelButton.setOnClickListener { v ->
+            Toast.makeText(this, "編集内容を破棄", Toast.LENGTH_SHORT).show()
+            finish()
+        }
 
     }
 

@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
@@ -94,15 +95,14 @@ class AccountPageFragment : Fragment() {
         profileText.text = profile
         genreText.text = genre
         skillText.text = skill
-        twitterText.text = twitterid
-        instagramText.text = instagramid
-        soundcloudText.text = soundcloudid
+
 
         match_send_button.setOnClickListener { _ ->
             val database = FirebaseDatabase.getInstance()
             val favoriteref = database.getReference(FavoritePATH)
             val user = FirebaseAuth.getInstance().currentUser
             favoriteref.child(id.toString()).child(user!!.uid).setValue("favuser")
+            Toast.makeText(context, "マッチ申請", Toast.LENGTH_SHORT).show()
             match_send_cansel_button.visibility = View.VISIBLE
             match_send_button.visibility = View.INVISIBLE
         }
@@ -112,6 +112,7 @@ class AccountPageFragment : Fragment() {
             val favoriteref = database.getReference(FavoritePATH)
             val user = FirebaseAuth.getInstance().currentUser
             favoriteref.child(id.toString()).child(user!!.uid).setValue(null)
+            Toast.makeText(context, "マッチ申請取り消し", Toast.LENGTH_SHORT).show()
             match_send_button.visibility = View.VISIBLE
             match_send_cansel_button.visibility = View.INVISIBLE
         }
@@ -127,8 +128,12 @@ class AccountPageFragment : Fragment() {
             accountref.child(all).child(id.toString()).child(matching).child(user!!.uid).setValue("matchinguser")
             val favoriteref = database.getReference(FavoritePATH)
             favoriteref.child(user!!.uid).child(id.toString()).setValue(null)
+            Toast.makeText(context, "Match!!", Toast.LENGTH_SHORT).show()
             match_button.visibility = View.INVISIBLE
             match_delete_button.visibility = View.VISIBLE
+            twitter_button.visibility = View.VISIBLE
+            instagram_button.visibility = View.VISIBLE
+            soundcloud_button.visibility = View.VISIBLE
         }
 
         match_delete_button.setOnClickListener { _ ->
@@ -140,7 +145,11 @@ class AccountPageFragment : Fragment() {
             val matching = "matching"
             accountref.child(all).child(user!!.uid).child(matching).child(id.toString()).setValue(null)
             accountref.child(all).child(id.toString()).child(matching).child(user!!.uid).setValue(null)
+            Toast.makeText(context, "マッチ解除", Toast.LENGTH_SHORT).show()
             match_delete_button.visibility = View.INVISIBLE
+            twitter_button.visibility = View.INVISIBLE
+            instagram_button.visibility = View.INVISIBLE
+            soundcloud_button.visibility = View.INVISIBLE
             match_send_button.visibility = View.VISIBLE
         }
 
@@ -153,9 +162,6 @@ class AccountPageFragment : Fragment() {
         soundcloud_button.setOnClickListener{
             context?.let { it1 -> navigateToSoundCloud(soundcloudid.toString(), it1) }
         }
-
-
-
 
 
 

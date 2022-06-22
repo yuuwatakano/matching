@@ -8,4 +8,6 @@
     <color name="colorBlack">#000000</color>
     <color name="colorpink">#ff69b4</color>
     <color name="colorgreen">#326273</color>
+    <color name="transparent_status_bar">#eeeeee</color>
+    <color name="transparent_status_bar2">#5c9ead</color>
 </resources>

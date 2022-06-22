@@ -1,100 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#eeeeee"
     tools:context=".AccountChange">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".AccountChange">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:id="@+id/change_imageView"
-            android:background="#d3d3d3"
-            android:layout_centerHorizontal="true"/>
-
-
-        <EditText
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/login_name_hint"
-            android:id="@+id/change_nameText" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="50"
-            android:hint="自己紹介"
-            android:id="@+id/change_profileText" />
+            android:layout_height="650dp">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="twitterID"
-            android:id="@+id/change_twitter_Text" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="instagramID"
-            android:id="@+id/change_instagram_Text" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="soundcloudID"
-            android:id="@+id/change_soundcloudID_Text" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                app:cardCornerRadius="100dp">
 
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="@string/address_info"-->
-<!--            android:id="@+id/address_info" />-->
+                <TextView
+                    android:id="@+id/no_images"
+                    android:layout_width="70dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="60dp"
+                    android:text="NO IMAGE"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
-<!--        <Spinner-->
-<!--            android:id="@+id/change_address_spinner"-->
-<!--            android:spinnerMode="dialog"-->
-<!--            android:background="#ffe4e1"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="40dp" />-->
+                <ImageView
+                    android:id="@+id/change_imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="centerCrop" />
 
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="@string/genre_info"-->
-<!--            android:id="@+id/genre_info" />-->
+                <ImageView
+                    android:id="@+id/pen"
+                    android:layout_width="30dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="90dp"
+                    android:src="@drawable/ic_change" />
+            </androidx.cardview.widget.CardView>
 
-<!--        <Spinner-->
-<!--            android:id="@+id/change_genre_spinner"-->
-<!--            android:spinnerMode="dialog"-->
-<!--            android:background="#e0ffff"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="40dp" />-->
 
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="@string/skill_info"-->
-<!--            android:id="@+id/skill_info" />-->
+            <EditText
+                android:id="@+id/change_nameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/card"
+                android:hint="@string/login_name_hint"
+                android:maxLength="10" />
 
-<!--        <Spinner-->
-<!--            android:id="@+id/change_skill_spinner"-->
-<!--            android:spinnerMode="dialog"-->
-<!--            android:background="#7fffd4"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="40dp" />-->
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="保存"
-            android:id="@+id/saveButton" />
+            <EditText
+                android:id="@+id/change_profileText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/change_nameText"
+                android:hint="自己紹介 ＜50字＞"
+                android:maxLength="50" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/change_twitter_Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/change_profileText"
+                android:hint="twitterID" />
+
+            <EditText
+                android:id="@+id/change_instagram_Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/change_twitter_Text"
+                android:hint="instagramID" />
+
+            <EditText
+                android:id="@+id/change_soundcloudID_Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/change_instagram_Text"
+                android:hint="soundcloudID" />
+
+            <ImageView
+                android:id="@+id/saveButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/change_soundcloudID_Text"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/ic_save" />
+            <ImageView
+                android:id="@+id/cancelButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/saveButton"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/ic_settingcancel" />
+
+        </RelativeLayout>
     </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

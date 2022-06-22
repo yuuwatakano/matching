@@ -1,14 +1,22 @@
 package jp.techacademy.yuuwa.takano.matching
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentTransaction
+import kotlinx.android.synthetic.main.activity_account_page.*
 
 class AccountPageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_page)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.transparent_status_bar)
+        back_buttom.setOnClickListener{
+            finish()
+        }
+
         val address =intent.getStringExtra("address")
         val name =intent.getStringExtra("name")
         val profile =intent.getStringExtra("profile")

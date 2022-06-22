@@ -108,10 +108,14 @@ class MatchingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        
         this.recyclerView = view.findViewById(R.id.accountlistView)
         swipeRefreshLayout.setOnRefreshListener {
             onResume()
             swipeRefreshLayout.isRefreshing = false
+        }
+        matching_info.setOnClickListener {
+            onResume()
         }
     }
 
