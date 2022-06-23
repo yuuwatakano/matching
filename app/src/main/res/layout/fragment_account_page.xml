@@ -142,7 +142,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_below="@+id/profileText"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginRight="30dp"
                 android:layout_toLeftOf="@+id/instagram_button"
                 android:src="@drawable/ic_twitter"
@@ -154,7 +154,7 @@
                 android:layout_height="50dp"
                 android:layout_below="@+id/profileText"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:src="@drawable/ic_instagram"
                 android:text="instagram" />
 
@@ -164,7 +164,7 @@
                 android:layout_height="50dp"
                 android:layout_below="@+id/profileText"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:layout_toRightOf="@+id/instagram_button"
                 android:src="@drawable/ic_soundcloud"
                 android:text="soundcloud" />

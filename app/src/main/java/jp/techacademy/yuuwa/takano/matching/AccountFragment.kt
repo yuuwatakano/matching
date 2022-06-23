@@ -121,6 +121,9 @@ class AccountFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         val user = FirebaseAuth.getInstance().currentUser
+        if (user == null){
+            startActivity(Intent(context, LoginActivity::class.java))
+        }
         mDatabaseReference = FirebaseDatabase.getInstance().reference
         val all = "all"
         mAccountRef = mDatabaseReference.child(AccountPATH).child(all)
@@ -139,8 +142,6 @@ class AccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val user = FirebaseAuth.getInstance().currentUser
-        Log.v("test_user", user.toString())
 
         login.setOnClickListener {
             startActivity(Intent(context, LoginActivity::class.java))
