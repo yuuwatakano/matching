@@ -10,6 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="none"
         tools:context=".AccountFragment">
 
         <RelativeLayout
@@ -30,13 +31,13 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
+                <ImageView
                     android:id="@+id/no_images"
                     android:layout_width="70dp"
-                    android:layout_height="50dp"
+                    android:layout_height="70dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_margin="58dp"
-                    android:text="NO IMAGE"
+                    android:layout_margin="45dp"
+                    android:src="@drawable/ic_casset"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <ImageView
@@ -83,8 +84,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/account_address"
-                android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@+id/account_genre"
+                android:layout_marginTop="20dp"
+                android:layout_toLeftOf="@+id/account_address"
                 android:src="@drawable/ic_baseline_music_note" />
 
             <TextView
@@ -93,7 +94,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/account_address"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/genreicon"
                 android:gravity="center_horizontal" />
 
             <ImageView
@@ -101,8 +103,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/account_genre"
-                android:layout_marginTop="5dp"
-                android:layout_toLeftOf="@+id/account_skill"
+                android:layout_marginTop="20dp"
+                android:layout_toLeftOf="@+id/account_address"
                 android:src="@drawable/ic_baseline_brush" />
 
             <TextView
@@ -111,17 +113,19 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/account_genre"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/skillicon"
                 android:gravity="center_horizontal" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/profileText_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_below="@+id/account_skill"
-                android:layout_marginTop="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
-                android:text="＜Profile＞" />
+                android:src="@drawable/ic_profile" />
 
             <TextView
                 android:id="@+id/account_profile"
@@ -129,6 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profileText_info"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
                 android:gravity="center_horizontal" />
 
             <TextView
@@ -137,7 +142,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/account_profile"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@+id/twitterImg"
                 android:gravity="center_horizontal" />
 
             <TextView
@@ -145,9 +151,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/twitterImg"
-
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@+id/instagramImg"
                 android:gravity="center_horizontal" />
 
             <TextView
@@ -155,41 +161,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/instagramImg"
+                android:layout_marginTop="15dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
+                android:layout_toRightOf="@+id/soundcloudImg"
                 android:gravity="center_horizontal" />
 
 
             <ImageView
                 android:id="@+id/twitterImg"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_below="@+id/account_profile"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="30dp"
-                android:layout_toLeftOf="@+id/account_twitter"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/account_address"
                 android:src="@drawable/ic_twitter"
                 android:text="twitter" />
 
             <ImageView
                 android:id="@+id/instagramImg"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_below="@+id/twitterImg"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="30dp"
-                android:layout_toLeftOf="@+id/account_instagram"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/account_address"
                 android:src="@drawable/ic_instagram"
                 android:text="instagram" />
 
             <ImageView
                 android:id="@+id/soundcloudImg"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_below="@+id/instagramImg"
-                android:layout_marginRight="30dp"
-                android:layout_toLeftOf="@+id/account_soundcloud"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_toLeftOf="@+id/account_address"
                 android:src="@drawable/ic_soundcloud"
                 android:text="soundcloud" />
 
@@ -198,6 +206,7 @@
                 android:id="@+id/accountChange"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_setting"
@@ -222,9 +231,15 @@
                 android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/accountChange"
                 android:src="@drawable/ic_logout"
-                android:text="logout"
+                android:text="logout" />
 
-                />
+            <ImageView
+                android:id="@+id/qa"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_qa"
+                android:text="logout" />
+
 
         </RelativeLayout>
     </ScrollView>

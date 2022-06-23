@@ -15,17 +15,18 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView.BufferType
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_account_change.*
-import kotlinx.android.synthetic.main.activity_account_fragment.*
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.fragment_account_page.*
 import java.io.ByteArrayOutputStream
+
 
 class AccountChange : AppCompatActivity() {
     private lateinit var mDataBaseReference: DatabaseReference
@@ -93,6 +94,8 @@ class AccountChange : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_change)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.transparent_status_bar)
+
         var bitMap = ""
 
         val address =intent.getStringExtra("loginaddress")
@@ -115,8 +118,18 @@ class AccountChange : AppCompatActivity() {
         Log.d("tkn9", instagramid?.toString())
         Log.d("tkn9", soundcloudid?.toString())
 
+        change_nameText.setText(name.toString(), BufferType.NORMAL)
+        change_profileText.setText(profile.toString(), BufferType.NORMAL)
+        change_twitter_Text.setText(twitterid.toString(), BufferType.NORMAL)
+        change_instagram_Text.setText(instagramid.toString(), BufferType.NORMAL)
+        change_soundcloudID_Text.setText(soundcloudid.toString(), BufferType.NORMAL)
+
+
         if (icon!!.isNotEmpty()) {
-            val image = BitmapFactory.decodeByteArray(icon, 0, icon.size).copy(Bitmap.Config.ARGB_8888, true)
+            val image = BitmapFactory.decodeByteArray(icon, 0, icon.size).copy(
+                Bitmap.Config.ARGB_8888,
+                true
+            )
             val imageView =change_imageView as ImageView
             imageView.setImageBitmap(image)
         }else{
@@ -129,7 +142,9 @@ class AccountChange : AppCompatActivity() {
             val local = "Local"
 
             mDataBaseReference = FirebaseDatabase.getInstance().reference
-            val localRef = mDataBaseReference.child(AccountPATH).child(local).child(address).child(genre).child(user!!.uid)
+            val localRef = mDataBaseReference.child(AccountPATH).child(local).child(address).child(
+                genre
+            ).child(user!!.uid)
             val all = "all"
             val allRef = mDataBaseReference.child(AccountPATH).child(all).child(user!!.uid)
 
@@ -152,35 +167,25 @@ class AccountChange : AppCompatActivity() {
             var soundclouddata = change_soundcloudID_Text.text.toString().trim()
             var instagramdata = change_instagram_Text.text.toString().trim()
 
-            if(change_nameText.length() == 0){
-                namedata = name.toString()
-            }
-            if(change_profileText.length() == 0){
-                profiledata = profile.toString()
-            }
+if(namedata.isNotEmpty()) {
+    val sender: MutableMap<String, Any> = HashMap()
+    sender["name"] = namedata
+    sender["image"] = bit
+    sender["profile"] = profiledata
+    sender["twitter"] = twitterdata
+    sender["instagram"] = instagramdata
+    sender["soundcloud"] = soundclouddata
+    mDataBaseReference.child(AccountPATH).child(local).child(address).child(genre).child(
+        user!!.uid
+    ).updateChildren(sender)
+    mDataBaseReference.child(AccountPATH).child(all).child(id).updateChildren(sender)
+    Toast.makeText(this, "編集内容を保存", Toast.LENGTH_SHORT).show()
 
-            if(change_twitter_Text.length() == 0){
-                twitterdata = twitterid.toString()
-            }
-            if(change_soundcloudID_Text.length() == 0){
-                soundclouddata = soundcloudid.toString()
-            }
-            if(change_instagram_Text.length() == 0){
-                instagramdata = instagramid.toString()
-            }
+    finish()
+}else{
+    Toast.makeText(this, "名前を入力してください", Toast.LENGTH_SHORT).show()
 
-            val sender: MutableMap<String, Any> = HashMap()
-            sender["name"] = namedata
-            sender["image"] = bit
-            sender["profile"] = profiledata
-            sender["twitter"] = twitterdata
-            sender["instagram"] = instagramdata
-            sender["soundcloud"] = soundclouddata
-            mDataBaseReference.child(AccountPATH).child(local).child(address).child(genre).child(user!!.uid).updateChildren(sender)
-            mDataBaseReference.child(AccountPATH).child(all).child(id).updateChildren(sender)
-            Toast.makeText(this, "編集内容を保存", Toast.LENGTH_SHORT).show()
-
-            finish()
+}
         }
         change_imageView.setOnClickListener { v ->
             // パーミッションの許可状態を確認する
@@ -205,7 +210,9 @@ class AccountChange : AppCompatActivity() {
             Toast.makeText(this, "編集内容を破棄", Toast.LENGTH_SHORT).show()
             finish()
         }
-
+        back_buttom.setOnClickListener { v ->
+            finish()
+        }
     }
 
     override fun onResume() {

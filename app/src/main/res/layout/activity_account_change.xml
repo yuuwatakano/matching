@@ -10,11 +10,19 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="none"
         tools:context=".AccountChange">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="650dp">
+
+            <ImageView
+                android:id="@+id/back_buttom"
+                android:layout_width="40dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card"
@@ -22,16 +30,16 @@
                 android:layout_height="150dp"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="60dp"
                 app:cardCornerRadius="100dp">
 
-                <TextView
+                <ImageView
                     android:id="@+id/no_images"
                     android:layout_width="70dp"
-                    android:layout_height="20dp"
+                    android:layout_height="70dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_margin="60dp"
-                    android:text="NO IMAGE"
+                    android:layout_margin="40dp"
+                    android:src="@drawable/ic_casset"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <ImageView
@@ -56,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/card"
                 android:hint="@string/login_name_hint"
+                android:inputType="text"
                 android:maxLength="10" />
 
             <EditText
@@ -71,21 +80,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/change_profileText"
-                android:hint="twitterID" />
+                android:hint="twitterID"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/change_instagram_Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/change_twitter_Text"
-                android:hint="instagramID" />
+                android:hint="instagramID"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/change_soundcloudID_Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/change_instagram_Text"
-                android:hint="soundcloudID" />
+                android:hint="soundcloudID"
+                android:inputType="text" />
 
             <ImageView
                 android:id="@+id/saveButton"
@@ -93,15 +105,30 @@
                 android:layout_height="50dp"
                 android:layout_below="@+id/change_soundcloudID_Text"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:layout_toRightOf="@+id/sepalete"
+                android:src="@drawable/ic_save1" />
+
+            <TextView
+                android:id="@+id/sepalete"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@+id/change_soundcloudID_Text"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="4dp"
-                android:src="@drawable/ic_save" />
+                android:gravity="center_horizontal"
+                android:text="/"
+                android:textSize="65dp" />
+
             <ImageView
                 android:id="@+id/cancelButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_below="@+id/saveButton"
+                android:layout_below="@+id/change_soundcloudID_Text"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="25dp"
+                android:layout_toLeftOf="@+id/sepalete"
                 android:src="@drawable/ic_settingcancel" />
 
         </RelativeLayout>

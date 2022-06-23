@@ -60,6 +60,12 @@ class AccountPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        profileText.visibility = View.INVISIBLE
+
+        profileText_info1.setOnClickListener { _ ->
+            profileText.visibility = View.VISIBLE
+            profileText_info1.visibility = View.INVISIBLE
+        }
 
         match_send_button.visibility = View.INVISIBLE
         match_send_cansel_button.visibility = View.INVISIBLE
@@ -162,8 +168,6 @@ class AccountPageFragment : Fragment() {
         soundcloud_button.setOnClickListener{
             context?.let { it1 -> navigateToSoundCloud(soundcloudid.toString(), it1) }
         }
-
-
 
 
     }

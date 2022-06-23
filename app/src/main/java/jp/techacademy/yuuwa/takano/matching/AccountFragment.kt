@@ -1,30 +1,22 @@
 package jp.techacademy.yuuwa.takano.matching
 
-import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.Toast
-import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_account_fragment.*
-import kotlinx.android.synthetic.main.activity_account_page.*
-import kotlinx.android.synthetic.main.activity_login.*
-import java.io.ByteArrayOutputStream
+
 
 class AccountFragment : Fragment() {
     private lateinit var mDatabaseReference: DatabaseReference
@@ -108,7 +100,10 @@ class AccountFragment : Fragment() {
             account_instagram.text = instagram
             account_soundcloud.text = soundcloud
             if (bytes.isNotEmpty()) {
-                val image = BitmapFactory.decodeByteArray(bytes, 0, bytes.size).copy(Bitmap.Config.ARGB_8888, true)
+                val image = BitmapFactory.decodeByteArray(bytes, 0, bytes.size).copy(
+                    Bitmap.Config.ARGB_8888,
+                    true
+                )
                 val imageView = icon_imageView as ImageView
                 imageView.setImageBitmap(image)
             }else{
@@ -138,7 +133,7 @@ class AccountFragment : Fragment() {
             login.visibility = View.INVISIBLE
             logout.visibility = View.VISIBLE
             val user = FirebaseAuth.getInstance().currentUser
-            Log.v("test_user","ログインした ID:"+ user?.uid!!)
+            Log.v("test_user", "ログインした ID:" + user?.uid!!)
         }
     }
 
@@ -158,13 +153,16 @@ class AccountFragment : Fragment() {
         accountChange.setOnClickListener {
             settingFrag = true
             val user = FirebaseAuth.getInstance().currentUser
-            Log.v("test_user1","ログインした ID:"+ user?.uid!!)
+            Log.v("test_user1", "ログインした ID:" + user?.uid!!)
             mDatabaseReference = FirebaseDatabase.getInstance().reference
             val all = "all"
             mAccountRef = mDatabaseReference.child(AccountPATH).child(all)
             mAccountRef!!.addChildEventListener(mAccountListener)
         }
+        qa.setOnClickListener {
+            startActivity(Intent(context, QaActivity::class.java))
 
+        }
 
 
     }

@@ -21,13 +21,13 @@
             android:layout_marginTop="5dp"
             app:cardCornerRadius="100dp">
 
-            <TextView
+            <ImageView
                 android:id="@+id/no_images"
                 android:layout_width="70dp"
-                android:layout_height="20dp"
+                android:layout_height="70dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="40dp"
-                android:text="NO IMAGE"
+                android:layout_margin="18dp"
+                android:src="@drawable/ic_casset"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <ImageView

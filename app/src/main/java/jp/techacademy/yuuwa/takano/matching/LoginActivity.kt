@@ -15,14 +15,15 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Base64
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
+import androidx.core.content.ContextCompat
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.AuthResult
@@ -30,6 +31,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.nameText
+import kotlinx.android.synthetic.main.fragment_account_page.*
 import java.io.ByteArrayOutputStream
 
 class LoginActivity : AppCompatActivity() {
@@ -94,6 +97,72 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.transparent_status_bar)
+        imageView.visibility = View.INVISIBLE
+        cover.visibility = View.VISIBLE
+        loginselect.visibility = View.INVISIBLE
+        nameText.visibility = View.INVISIBLE
+        twitter_Text.visibility = View.INVISIBLE
+        instagram_Text.visibility = View.INVISIBLE
+        soundcloudID_Text.visibility = View.INVISIBLE
+        address_info.visibility = View.INVISIBLE
+        address_spinner.visibility = View.INVISIBLE
+        genre_info.visibility = View.INVISIBLE
+        genre_spinner.visibility = View.INVISIBLE
+        skill_info.visibility = View.INVISIBLE
+        skill_spinner.visibility = View.INVISIBLE
+        createButton.visibility = View.INVISIBLE
+        drop1.visibility = View.INVISIBLE
+        drop2.visibility = View.INVISIBLE
+        drop3.visibility = View.INVISIBLE
+
+        createselect.setOnClickListener{
+            casset.visibility = View.INVISIBLE
+            createselect.visibility = View.INVISIBLE
+            imageView.visibility = View.VISIBLE
+            loginButton.visibility = View.INVISIBLE
+            cover.visibility = View.INVISIBLE
+            loginselect.visibility = View.VISIBLE
+            nameText.visibility = View.VISIBLE
+            twitter_Text.visibility = View.VISIBLE
+            instagram_Text.visibility = View.VISIBLE
+            soundcloudID_Text.visibility = View.VISIBLE
+            address_info.visibility = View.VISIBLE
+            address_spinner.visibility = View.VISIBLE
+            genre_info.visibility = View.VISIBLE
+            genre_spinner.visibility = View.VISIBLE
+            skill_info.visibility = View.VISIBLE
+            skill_spinner.visibility = View.VISIBLE
+            createButton.visibility = View.VISIBLE
+            drop1.visibility = View.VISIBLE
+            drop2.visibility = View.VISIBLE
+            drop3.visibility = View.VISIBLE
+            Toast.makeText(this, "アカウント作成", Toast.LENGTH_SHORT).show()
+        }
+        loginselect.setOnClickListener{
+            casset.visibility = View.VISIBLE
+            createselect.visibility = View.VISIBLE
+            loginButton.visibility = View.VISIBLE
+            imageView.visibility = View.INVISIBLE
+            cover.visibility = View.VISIBLE
+            loginselect.visibility = View.INVISIBLE
+            nameText.visibility = View.INVISIBLE
+            twitter_Text.visibility = View.INVISIBLE
+            instagram_Text.visibility = View.INVISIBLE
+            soundcloudID_Text.visibility = View.INVISIBLE
+            address_info.visibility = View.INVISIBLE
+            address_spinner.visibility = View.INVISIBLE
+            genre_info.visibility = View.INVISIBLE
+            genre_spinner.visibility = View.INVISIBLE
+            skill_info.visibility = View.INVISIBLE
+            skill_spinner.visibility = View.INVISIBLE
+            createButton.visibility = View.INVISIBLE
+            drop1.visibility = View.INVISIBLE
+            drop2.visibility = View.INVISIBLE
+            drop3.visibility = View.INVISIBLE
+            Toast.makeText(this, "ログイン", Toast.LENGTH_SHORT).show()
+        }
+
         var addresstext = "未選択"
         var genretext   = "未選択"
         var skilltext   = "未選択"
@@ -305,6 +374,25 @@ class LoginActivity : AppCompatActivity() {
                     .show()
             }
         }
+
+
+        emailText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    val email = emailText.text.toString()
+                    if (email.endsWith(".com")) {
+                        mail_info.visibility = View.INVISIBLE
+                    } else {
+                        mail_info.visibility = View.VISIBLE
+                    }
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+
+                }
+            })
     }
 
 
@@ -359,5 +447,7 @@ private fun showChooser() {
 
     startActivityForResult(chooserIntent, CHOOSER_REQUEST_CODE)
 }
+
+
 
 }
