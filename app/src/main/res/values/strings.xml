@@ -1,7 +1,7 @@
 <resources>
 
 
-    <string name="app_name">match</string>
+    <string name="app_name">Rally.</string>
     <string name="login_email_hint">メールアドレス</string>
     <string name="login_pass_hint">パスワード＜6文字以上＞</string>
     <string name="login_name_hint">ニックネーム＜10字＞</string>
@@ -72,13 +72,25 @@
     <string-array name="genre_spinnerItems">
         <item>HIPHOP</item>
         <item>ROCK</item>
-        <item>POPS</item>
+        <item>Raggae</item>
+        <item>R＆B</item>
+        <item>Jazz</item>
     </string-array>
 
     <string-array name="skill_spinnerItems">
         <item>ボーカル</item>
-        <item>ギター</item>
         <item>トラックメイク</item>
+        <item>ギター</item>
+        <item>ベース</item>
+        <item>ドラム</item>
+        <item>キーボード</item>
+        <item>DTM</item>
+        <item>Mix</item>
+        <item>トランペット</item>
+        <item>ラッパ</item>
+        <item>リコーダー</item>
+        <item>ウクレレ</item>
+        <item>ピアノ</item>
     </string-array>
 
     <string name="logout_complete_message">ログアウトしました</string>
