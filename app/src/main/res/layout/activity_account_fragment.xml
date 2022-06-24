@@ -150,7 +150,7 @@
                 android:layout_toRightOf="@+id/twitterImg"
 
                 android:gravity="center_horizontal"
-                android:text="twitter" />
+                android:text="未設定" />
 
             <TextView
                 android:id="@+id/account_instagram"
@@ -161,7 +161,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_toRightOf="@+id/instagramImg"
                 android:gravity="center_horizontal"
-                android:text="instagram" />
+                android:text="未設定" />
 
             <TextView
                 android:id="@+id/account_soundcloud"
@@ -172,7 +172,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_toRightOf="@+id/soundcloudImg"
                 android:gravity="center_horizontal"
-                android:text="soundcloud" />
+                android:text="未設定" />
 
 
             <ImageView
