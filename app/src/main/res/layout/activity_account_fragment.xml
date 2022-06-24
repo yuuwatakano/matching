@@ -66,11 +66,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/account_name"
-                android:layout_toLeftOf="@+id/account_address"
+                android:layout_toLeftOf="@+id/account_address1"
                 android:src="@drawable/ic_baseline_place" />
 
             <TextView
-                android:id="@+id/account_address"
+                android:id="@+id/account_address1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/account_name"
@@ -84,16 +84,16 @@
                 android:id="@+id/genreicon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/account_address"
+                android:layout_below="@+id/account_address1"
                 android:layout_marginTop="20dp"
-                android:layout_toLeftOf="@+id/account_address"
+                android:layout_toLeftOf="@+id/account_address1"
                 android:src="@drawable/ic_baseline_music_note" />
 
             <TextView
                 android:id="@+id/account_genre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/account_address"
+                android:layout_below="@+id/account_address1"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@+id/genreicon"
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/account_genre"
                 android:layout_marginTop="20dp"
-                android:layout_toLeftOf="@+id/account_address"
+                android:layout_toLeftOf="@+id/account_address1"
                 android:src="@drawable/ic_baseline_brush" />
 
             <TextView
@@ -182,7 +182,7 @@
                 android:layout_below="@+id/account_profile"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@+id/account_address"
+                android:layout_toLeftOf="@+id/account_address1"
                 android:src="@drawable/ic_twitter"
                 android:text="twitter" />
 
@@ -194,7 +194,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@+id/account_address"
+                android:layout_toLeftOf="@+id/account_address1"
                 android:src="@drawable/ic_instagram"
                 android:text="instagram" />
 
@@ -205,7 +205,7 @@
                 android:layout_below="@+id/instagramImg"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@+id/account_address"
+                android:layout_toLeftOf="@+id/account_address1"
                 android:src="@drawable/ic_soundcloud"
                 android:text="soundcloud" />
 

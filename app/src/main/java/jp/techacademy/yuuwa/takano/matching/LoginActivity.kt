@@ -321,7 +321,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "ログインしました", Toast.LENGTH_SHORT).show()
 
                 // Activityを閉じる
-                finish()
+                startActivity(Intent(this, MainActivity::class.java))
 
             } else {
 

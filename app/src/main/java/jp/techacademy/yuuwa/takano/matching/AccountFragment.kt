@@ -90,15 +90,30 @@ class AccountFragment : Fragment() {
             Log.d("tkn8", twitterID.toString())
             Log.d("tkn8", instagram.toString())
             Log.d("tkn8", soundcloud.toString())
-
-            account_address.text = address
-            account_name.text = name
-            account_profile.text = profile
-            account_genre.text = genre
-            account_skill.text = skill
-            account_twitter.text = twitterID
-            account_instagram.text = instagram
-            account_soundcloud.text = soundcloud
+            if (address.isNotEmpty()) {
+                account_address1.text = address
+            }
+            if (name.isNotEmpty()) {
+                account_name.text = name
+            }
+            if (profile.isNotEmpty()) {
+                account_profile.text = profile
+            }
+            if (genre.isNotEmpty()) {
+                account_genre.text = genre
+            }
+            if (skill.isNotEmpty()) {
+                account_skill.text = skill
+            }
+            if (twitterID.isNotEmpty()) {
+                account_twitter.text = twitterID
+            }
+            if (instagram.isNotEmpty()) {
+                account_instagram.text = instagram
+            }
+            if (soundcloud.isNotEmpty()) {
+                account_soundcloud.text = soundcloud
+            }
             if (bytes.isNotEmpty()) {
                 val image = BitmapFactory.decodeByteArray(bytes, 0, bytes.size).copy(
                     Bitmap.Config.ARGB_8888,
