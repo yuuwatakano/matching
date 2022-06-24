@@ -58,6 +58,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="2dp"
                 android:gravity="center_horizontal"
+                android:text="name"
                 app:autoSizeTextType="uniform" />
 
             <ImageView
@@ -96,7 +97,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@+id/genreicon"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:text="genre" />
 
             <ImageView
                 android:id="@+id/skillicon"
@@ -115,7 +117,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@+id/skillicon"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:text="skill" />
 
             <ImageView
                 android:id="@+id/profileText_info"
@@ -134,7 +137,8 @@
                 android:layout_below="@+id/profileText_info"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:text="profile" />
 
             <TextView
                 android:id="@+id/account_twitter"
@@ -144,7 +148,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:layout_toRightOf="@+id/twitterImg"
-                android:gravity="center_horizontal" />
+
+                android:gravity="center_horizontal"
+                android:text="twitter" />
 
             <TextView
                 android:id="@+id/account_instagram"
@@ -154,17 +160,19 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:layout_toRightOf="@+id/instagramImg"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:text="instagram" />
 
             <TextView
                 android:id="@+id/account_soundcloud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/instagramImg"
-                android:layout_marginTop="15dp"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
                 android:layout_toRightOf="@+id/soundcloudImg"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:text="soundcloud" />
 
 
             <ImageView
@@ -195,8 +203,8 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_below="@+id/instagramImg"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/account_address"
                 android:src="@drawable/ic_soundcloud"
                 android:text="soundcloud" />

@@ -91,6 +91,8 @@
         <item>リコーダー</item>
         <item>ウクレレ</item>
         <item>ピアノ</item>
+        <item>カリンバ</item>
+
     </string-array>
 
     <string name="logout_complete_message">ログアウトしました</string>

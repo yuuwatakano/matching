@@ -37,16 +37,16 @@ class AccountFragment : Fragment() {
             Log.d("test_account", dataSnapshot.value.toString())
             val map = dataSnapshot.value as Map<String, String>
 
-            var name = map["name"] ?: ""
-            var profile = map["profile"] ?: ""
-            var address = map["address"] ?: ""
-            var genre = map["genre"] ?: ""
-            var skill = map["skill"] ?: ""
-            var imageString = map["image"] ?: ""
-            var id = map["id"] ?: ""
-            var twitterID = map["twitter"] ?: ""
-            var instagram = map["instagram"] ?: ""
-            var soundcloud = map["soundcloud"] ?: ""
+            val name = map["name"] ?: ""
+            val profile = map["profile"] ?: ""
+            val address = map["address"] ?: ""
+            val genre = map["genre"] ?: ""
+            val skill = map["skill"] ?: ""
+            val imageString = map["image"] ?: ""
+            val id = map["id"] ?: ""
+            val twitterID = map["twitter"] ?: ""
+            val instagram = map["instagram"] ?: ""
+            val soundcloud = map["soundcloud"] ?: ""
             val bytes =
                 if (imageString.isNotEmpty()) {
                     Base64.decode(imageString, Base64.DEFAULT)
