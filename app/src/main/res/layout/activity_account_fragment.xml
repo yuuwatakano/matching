@@ -15,7 +15,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="650dp">
+            android:layout_height="700dp">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card"
@@ -158,7 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/twitterImg"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:layout_toRightOf="@+id/instagramImg"
                 android:gravity="center_horizontal"
                 android:text="未設定" />
@@ -169,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/instagramImg"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:layout_toRightOf="@+id/soundcloudImg"
                 android:gravity="center_horizontal"
                 android:text="未設定" />
@@ -183,7 +183,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/account_address1"
-                android:src="@drawable/ic_twitter"
+                android:src="@drawable/ic_twitter_logo___blue"
                 android:text="twitter" />
 
             <ImageView
@@ -192,10 +192,10 @@
                 android:layout_height="20dp"
                 android:layout_below="@+id/twitterImg"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/account_address1"
-                android:src="@drawable/ic_instagram"
+                android:src="@drawable/ic_insta"
                 android:text="instagram" />
 
             <ImageView
@@ -203,7 +203,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_below="@+id/instagramImg"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/account_address1"
                 android:src="@drawable/ic_soundcloud"

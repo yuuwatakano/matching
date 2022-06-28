@@ -145,7 +145,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginRight="30dp"
                 android:layout_toLeftOf="@+id/instagram_button"
-                android:src="@drawable/ic_twitter"
+                android:src="@drawable/ic_twitter_logo___blue"
                 android:text="twitter" />
 
             <ImageView
@@ -155,7 +155,7 @@
                 android:layout_below="@+id/profileText"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
-                android:src="@drawable/ic_instagram"
+                android:src="@drawable/ic_insta"
                 android:text="instagram" />
 
             <ImageView

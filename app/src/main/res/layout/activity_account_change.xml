@@ -72,8 +72,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/change_nameText"
-                android:hint="自己紹介 ＜50字＞"
-                android:maxLength="50" />
+                android:hint="自己紹介 ＜100字＞"
+                android:maxLength="100" />
 
             <EditText
                 android:id="@+id/change_twitter_Text"
