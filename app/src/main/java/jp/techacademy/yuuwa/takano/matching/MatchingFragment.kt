@@ -42,10 +42,6 @@ class MatchingFragment : Fragment() {
     //Account配列にデータを受け渡すリスナー　ここから
     private val mAccountListener = object : ChildEventListener {
         override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
-
-            Log.d("test_local1", dataSnapshot.toString())
-            Log.d("test_local1", dataSnapshot.key.toString())
-            Log.d("test_local1", dataSnapshot.value.toString())
             if (dataSnapshot.value == null) {
                 return
             }
@@ -61,7 +57,6 @@ class MatchingFragment : Fragment() {
                 override fun onDataChange(Snapshot: DataSnapshot) {
                     val map = Snapshot.value as Map<String, String>
                     val user = FirebaseAuth.getInstance().currentUser
-                    Log.d("test_local1", Snapshot.toString())
                     val name = map["name"] ?: ""
                     val profile = map["profile"] ?: ""
                     val address = map["address"] ?: ""
@@ -81,11 +76,6 @@ class MatchingFragment : Fragment() {
                         } else {
                             byteArrayOf()
                         }
-                    Log.d("test_local3", name)
-                    Log.d("test_local3", address)
-                    Log.d("test_local3", genre)
-                    Log.d("test_local3", skill)
-
                     val account = Account(
                         name,
                         profile,
@@ -98,7 +88,6 @@ class MatchingFragment : Fragment() {
                         soundcloud,
                         bytes
                     )
-                    Log.d("test", account.toString())
                     sadText.visibility = View.INVISIBLE
                     mAccountArrayList.add(account)
                     mAdapter.notifyDataSetChanged()
@@ -167,12 +156,6 @@ class MatchingFragment : Fragment() {
 
     //RecyclerView内のアイテムがクリックされたときに動く
     private fun onClickItem(tappedView: View, itemModel: Account) {
-        Log.d("tkn", itemModel.address)
-        Log.d("tkn", itemModel.name)
-        Log.d("tkn", itemModel.genre)
-        Log.d("tkn", itemModel.skill)
-        Log.d("tkn4", itemModel.id)
-        Log.d("tkn", itemModel.imageBytes.toString())
         val intent = Intent(activity, AccountPageActivity::class.java)
         intent.putExtra("address", itemModel.address)
         intent.putExtra("name", itemModel.name)

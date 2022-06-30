@@ -16,7 +16,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
-        Log.v("test_takano", "onCreateView")
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.activity_home_fragment, container, false)
 
@@ -30,7 +29,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.v("test_takano", "onViewCreated")
         //ここの「pager」はfragment_second.xmlのViewPagerのidの事！
         pager.adapter = PageAdapter(childFragmentManager)
         tabLayout.setupWithViewPager(pager)

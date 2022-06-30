@@ -32,11 +32,8 @@ class AccountFragment : Fragment() {
     }
 
     private val mAccountListener = object : ChildEventListener {
-        override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {//子データがある際はデータを引き出す
-            Log.d("test_account", dataSnapshot.toString())
-            Log.d("test_account", dataSnapshot.value.toString())
+        override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {//子データがある際はデータを引き出
             val map = dataSnapshot.value as Map<String, String>
-
             val name = map["name"] ?: ""
             val profile = map["profile"] ?: ""
             val address = map["address"] ?: ""
@@ -57,15 +54,6 @@ class AccountFragment : Fragment() {
             if (user!!.uid != id) {
                 return
             }
-            Log.d("test_account1", name)
-            Log.d("test_account1", address)
-            Log.d("test_account1", genre)
-            Log.d("test_account1", skill)
-            Log.d("test_account3", imageString)
-            Log.d("test_account1", id)
-            Log.d("test_account1", twitterID)
-            Log.d("test_account1", instagram)
-            Log.d("test_account1", soundcloud)
             if (settingFrag) {
                 val intent = Intent(context, AccountChange::class.java)
                 intent.putExtra("loginaddress", address.toString())
@@ -81,15 +69,6 @@ class AccountFragment : Fragment() {
                 settingFrag = false
                 startActivity(intent)
             }
-            Log.d("tkn8", address.toString())
-            Log.d("tkn8", name.toString())
-            Log.d("tkn8", genre.toString())
-            Log.d("tkn8", skill.toString())
-            Log.d("tkn8", id.toString())
-            Log.d("tkn8", bytes.toString())
-            Log.d("tkn8", twitterID.toString())
-            Log.d("tkn8", instagram.toString())
-            Log.d("tkn8", soundcloud.toString())
             account_address1.text = address
             account_name.text = name
             account_profile.text = profile
@@ -136,7 +115,6 @@ class AccountFragment : Fragment() {
             login.visibility = View.INVISIBLE
             logout.visibility = View.VISIBLE
             val user = FirebaseAuth.getInstance().currentUser
-            Log.v("test_user", "ログインした ID:" + user?.uid!!)
         }
     }
 
@@ -154,7 +132,6 @@ class AccountFragment : Fragment() {
         accountChange.setOnClickListener {//アカウント設定ボタン
             settingFrag = true
             val user = FirebaseAuth.getInstance().currentUser
-            Log.v("test_user1", "ログインした ID:" + user?.uid!!)
             mDatabaseReference = FirebaseDatabase.getInstance().reference
             val all = "all"
             mAccountRef = mDatabaseReference.child(AccountPATH).child(all)

@@ -90,7 +90,6 @@ class AccountPageFragment : Fragment() {
 
 
 
-        Log.d("tkn5", id.toString())
 
         if (icon!!.isNotEmpty()) {
             val image = BitmapFactory.decodeByteArray(icon, 0, icon.size)
@@ -181,11 +180,6 @@ class AccountPageFragment : Fragment() {
 
     private val mCheckListener = object : ValueEventListener {
         override fun onDataChange(dataSnapshot: DataSnapshot) {
-            Log.d("test_ck", dataSnapshot.toString())
-            Log.d("test_ck", dataSnapshot.key.toString())
-            Log.d("test_ck", dataSnapshot.value.toString())
-
-
             if (dataSnapshot.value == null) {
                 match_send_button.visibility = View.VISIBLE
                 match_send_cansel_button.visibility = View.INVISIBLE
@@ -203,9 +197,6 @@ class AccountPageFragment : Fragment() {
 
     private val mMatchListener = object : ValueEventListener {
         override fun onDataChange(dataSnapshot: DataSnapshot) {
-            Log.d("test_match", dataSnapshot.toString())
-            Log.d("test_match", dataSnapshot.key.toString())
-            Log.d("test_match", dataSnapshot.value.toString())
             val id = requireArguments().getString("id")
             if (dataSnapshot.value != null) {
                 match_send_button.visibility = View.INVISIBLE
@@ -222,14 +213,7 @@ class AccountPageFragment : Fragment() {
 
     private val mMatchingCheckListener = object : ValueEventListener {
         override fun onDataChange(dataSnapshot: DataSnapshot) {
-            Log.d("test_ck1", dataSnapshot.toString())
-            Log.d("test_ck1", dataSnapshot.key.toString())
-            Log.d("test_ck1", dataSnapshot.value.toString())
             val id = requireArguments().getString("id")
-            Log.d("test_ck1", id.toString())
-
-
-
             if (dataSnapshot.value == null) {
                 initUnMatch(id.toString())
 
@@ -260,9 +244,6 @@ class AccountPageFragment : Fragment() {
         //マッチング申請しているかチェック[申請済みは申請キャンセルボタン/申請していなければ申請ボタン]
         mCheckRef =
             mDataBaseReference.child(FavoritePATH).child(unMatchUserSendId).child(user!!.uid)
-        Log.d("test_ck6", unMatchUserSendId)
-        Log.d("test_ck5", user!!.uid)
-        Log.d("test_ck5", FavoritePATH)
         mCheckRef!!.addListenerForSingleValueEvent(mCheckListener)
     }
 

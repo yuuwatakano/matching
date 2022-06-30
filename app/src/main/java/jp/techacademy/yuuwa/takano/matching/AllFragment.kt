@@ -46,8 +46,6 @@ class AllFragment : Fragment() {
     //Account配列にデータを受け渡すリスナー　ここから
     private val mAccountListener = object : ChildEventListener {
         override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
-            Log.d("test_account", dataSnapshot.toString())
-            Log.d("test_account", dataSnapshot.value.toString())
             if (dataSnapshot.value == null){
                 return
             }
@@ -73,14 +71,7 @@ class AllFragment : Fragment() {
             if (id == user!!.uid){
                 return
             }
-            Log.d("test_account", name)
-            Log.d("test_account", address)
-            Log.d("test_account", genre)
-            Log.d("test_account", skill)
-            Log.d("test_account1", imageString)
-            Log.d("test_account1", id)
             val account = Account(name, profile,address, genre, skill,id,twitterID,instagram,soundcloud,bytes)
-            Log.d("test", account.toString())
             mAccountArrayList.add(account)
             mAdapter.notifyDataSetChanged()
         }
@@ -137,12 +128,6 @@ class AllFragment : Fragment() {
 
     //RecyclerView内のアイテムがクリックされたときに動く
     private fun onClickItem(tappedView: View, itemModel: Account) {
-        Log.d("tkn", itemModel.address)
-        Log.d("tkn", itemModel.name)
-        Log.d("tkn", itemModel.genre)
-        Log.d("tkn", itemModel.skill)
-        Log.d("tkn4", itemModel.id)
-        Log.d("tkn", itemModel.imageBytes.toString())
         val intent = Intent(activity, AccountPageActivity::class.java)
         intent.putExtra("address",itemModel.address)
         intent.putExtra("name",itemModel.name)

@@ -210,7 +210,6 @@ class LoginActivity : AppCompatActivity() {
                 id: Long
             ) {
                 addresstext = parent?.selectedItem as String //所在地データ
-                Log.v("test_address", addresstext)
             }
 
             // 基本的には呼ばれないが、何らかの理由で選択されることなく項目が閉じられたら呼ばれる
@@ -227,7 +226,6 @@ class LoginActivity : AppCompatActivity() {
                 id: Long
             ) {
                 genretext = parent?.selectedItem as String //ジャンルデータ
-                Log.v("test_genre", genretext)
             }
 
             // 基本的には呼ばれないが、何らかの理由で選択されることなく項目が閉じられたら呼ばれる
@@ -244,8 +242,6 @@ class LoginActivity : AppCompatActivity() {
                 id: Long
             ) {
                 skilltext = parent?.selectedItem as String //スキルデータ
-                Log.v("test_skill", skilltext)
-
             }
 
             // 基本的には呼ばれないが、何らかの理由で選択されることなく項目が閉じられたら呼ばれる

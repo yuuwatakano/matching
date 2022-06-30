@@ -14,7 +14,6 @@ class PageAdapter(fm: FragmentManager) : FragmentPagerAdapter(
     BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
 ) {
     override fun getItem(position: Int): Fragment {
-        Log.v("test_takano", "getItem:" + position.toString())
         when (position) {
             // どのFragmentを表示するか
             0 -> {
@@ -39,7 +38,6 @@ class PageAdapter(fm: FragmentManager) : FragmentPagerAdapter(
 
     // スワイプビューのタイトルを決める
     override fun getPageTitle(position: Int): CharSequence? {
-        Log.v("test_takano", "getPageTitle:" + position.toString())
         when (position) {
             0 -> {
                 return "Local"

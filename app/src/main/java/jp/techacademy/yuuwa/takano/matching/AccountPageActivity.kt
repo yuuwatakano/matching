@@ -27,11 +27,6 @@ class AccountPageActivity : AppCompatActivity() {
         val instagramid = intent.getStringExtra("instagramid")
         val soundcloudid = intent.getStringExtra("soundcloudid")
         val icon = intent.getByteArrayExtra("image")
-        Log.d("tkn2", address.toString())
-        Log.d("tkn2", name.toString())
-        Log.d("tkn2", genre.toString())
-        Log.d("tkn2", skill.toString())
-
         val args = Bundle()
         args.putString("address", address)
         args.putString("name", name)
