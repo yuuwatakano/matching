@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_login.view.*
 
 
-class AccountViewAdapter (
+class AccountViewAdapter(
     private val list: List<Account>,
     private val listener: ListListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -21,13 +21,11 @@ class AccountViewAdapter (
     }
 
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val itemView: View = LayoutInflater.from(parent.context).inflate(R.layout.item_account_list, parent, false)
+        val itemView: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_account_list, parent, false)
         return AccountViewHolder(itemView)
     }
-
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -37,13 +35,15 @@ class AccountViewAdapter (
         holder.itemView.findViewById<TextView>(R.id.skillTextView).text = list[position].skill
         val bytes = list[position].imageBytes
         if (bytes.isNotEmpty()) {
-            val image = BitmapFactory.decodeByteArray(bytes, 0, bytes.size).copy(Bitmap.Config.ARGB_8888, true)
+            val image = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                .copy(Bitmap.Config.ARGB_8888, true)
             val imageView = holder.itemView.findViewById<View>(R.id.iconImageView) as ImageView
             imageView.setImageBitmap(image)
-    }
+        }
         holder.itemView.setOnClickListener {
             listener.onClickItem(it, list[position])
         }
     }
+
     override fun getItemCount(): Int = list.size
 }

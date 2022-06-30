@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_account_fragment.*
 class AccountFragment : Fragment() {
     private lateinit var mDatabaseReference: DatabaseReference
     private var mAccountRef: DatabaseReference? = null
-    private var settingFrag:Boolean = false
+    private var settingFrag: Boolean = false
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,7 +32,7 @@ class AccountFragment : Fragment() {
     }
 
     private val mAccountListener = object : ChildEventListener {
-        override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
+        override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {//子データがある際はデータを引き出す
             Log.d("test_account", dataSnapshot.toString())
             Log.d("test_account", dataSnapshot.value.toString())
             val map = dataSnapshot.value as Map<String, String>
@@ -54,7 +54,7 @@ class AccountFragment : Fragment() {
                     byteArrayOf()
                 }
             val user = FirebaseAuth.getInstance().currentUser
-            if(user!!.uid != id){
+            if (user!!.uid != id) {
                 return
             }
             Log.d("test_account1", name)
@@ -105,22 +105,23 @@ class AccountFragment : Fragment() {
                 )
                 val imageView = icon_imageView as ImageView
                 imageView.setImageBitmap(image)
-            }else{
+            } else {
                 val imageView = icon_imageView as ImageView
                 imageView.setImageBitmap(null)
             }
             return
         }
+
         override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {}
         override fun onChildRemoved(p0: DataSnapshot) {}
         override fun onChildMoved(p0: DataSnapshot, p1: String?) {}
         override fun onCancelled(p0: DatabaseError) {}
     }
 
-    override fun onResume() {
+    override fun onResume() {//ログインアカウントのデータ取得
         super.onResume()
         val user = FirebaseAuth.getInstance().currentUser
-        if (user == null){
+        if (user == null) {
             startActivity(Intent(context, LoginActivity::class.java))
         }
         mDatabaseReference = FirebaseDatabase.getInstance().reference
@@ -131,7 +132,7 @@ class AccountFragment : Fragment() {
         if (user == null) {
             login.visibility = View.VISIBLE
             logout.visibility = View.INVISIBLE
-        }else{
+        } else {
             login.visibility = View.INVISIBLE
             logout.visibility = View.VISIBLE
             val user = FirebaseAuth.getInstance().currentUser
@@ -142,7 +143,7 @@ class AccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        login.setOnClickListener {
+        login.setOnClickListener {//ログインボタン
             startActivity(Intent(context, LoginActivity::class.java))
         }
         logout.setOnClickListener { _ ->
@@ -150,7 +151,7 @@ class AccountFragment : Fragment() {
             Toast.makeText(context, "ログアウトしました", Toast.LENGTH_SHORT).show()
             startActivity(Intent(context, LoginActivity::class.java))
         }
-        accountChange.setOnClickListener {
+        accountChange.setOnClickListener {//アカウント設定ボタン
             settingFrag = true
             val user = FirebaseAuth.getInstance().currentUser
             Log.v("test_user1", "ログインした ID:" + user?.uid!!)
@@ -159,12 +160,10 @@ class AccountFragment : Fragment() {
             mAccountRef = mDatabaseReference.child(AccountPATH).child(all)
             mAccountRef!!.addChildEventListener(mAccountListener)
         }
-        qa.setOnClickListener {
+        qa.setOnClickListener {//Q&Aボタン
             startActivity(Intent(context, QaActivity::class.java))
 
         }
-
-
     }
 }
 

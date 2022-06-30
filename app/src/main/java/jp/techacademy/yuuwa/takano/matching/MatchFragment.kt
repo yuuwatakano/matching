@@ -46,7 +46,7 @@ class MatchFragment : Fragment() {
             Log.d("test_local1", dataSnapshot.toString())
             Log.d("test_local1", dataSnapshot.key.toString())
             Log.d("test_local1", dataSnapshot.value.toString())
-            if (dataSnapshot.value == null){
+            if (dataSnapshot.value == null) {
                 return
             }
 
@@ -54,11 +54,12 @@ class MatchFragment : Fragment() {
 
             val all = "all"
 
-            mAccountRef = mDatabaseReference.child(AccountPATH).child(all).child(matchKey.toString())
+            mAccountRef =
+                mDatabaseReference.child(AccountPATH).child(all).child(matchKey.toString())
 
             mAccountRef!!.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(Snapshot: DataSnapshot) {
-                    val map = Snapshot.value as Map<String,String>
+                    val map = Snapshot.value as Map<String, String>
                     val user = FirebaseAuth.getInstance().currentUser
                     Log.d("test_local1", Snapshot.toString())
                     val name = map["name"] ?: ""
@@ -71,7 +72,7 @@ class MatchFragment : Fragment() {
                     val twitterID = map["twitter"] ?: ""
                     val instagram = map["instagram"] ?: ""
                     val soundcloud = map["soundcloud"] ?: ""
-                    if (id == user!!.uid){
+                    if (id == user!!.uid) {
                         return
                     }
                     val bytes =
@@ -85,7 +86,18 @@ class MatchFragment : Fragment() {
                     Log.d("test_local3", genre)
                     Log.d("test_local3", skill)
 
-                    val account = Account(name,profile ,address, genre, skill,id,twitterID,instagram,soundcloud,bytes)
+                    val account = Account(
+                        name,
+                        profile,
+                        address,
+                        genre,
+                        skill,
+                        id,
+                        twitterID,
+                        instagram,
+                        soundcloud,
+                        bytes
+                    )
                     Log.d("test", account.toString())
                     mAccountArrayList.add(account)
                     mAdapter.notifyDataSetChanged()
@@ -129,11 +141,12 @@ class MatchFragment : Fragment() {
         val all = "all"
         val matching = "matching"
         val user = FirebaseAuth.getInstance().currentUser
-        mAccountRef = mDatabaseReference.child(AccountPATH).child(all).child(user!!.uid).child(matching)
+        mAccountRef =
+            mDatabaseReference.child(AccountPATH).child(all).child(user!!.uid).child(matching)
         mAccountRef!!.addChildEventListener(mAccountListener)
         this.recyclerView?.apply {
             setHasFixedSize(true)
-            layoutManager = GridLayoutManager(context,1)
+            layoutManager = GridLayoutManager(context, 1)
             itemAnimator = DefaultItemAnimator()
             adapter = mAdapter
         }
@@ -157,16 +170,16 @@ class MatchFragment : Fragment() {
         Log.d("tkn4", itemModel.id)
         Log.d("tkn", itemModel.imageBytes.toString())
         val intent = Intent(activity, AccountPageActivity::class.java)
-        intent.putExtra("address",itemModel.address)
-        intent.putExtra("name",itemModel.name)
-        intent.putExtra("profile",itemModel.profile)
-        intent.putExtra("genre",itemModel.genre)
-        intent.putExtra("skill",itemModel.skill)
-        intent.putExtra("id",itemModel.id)
-        intent.putExtra("image",itemModel.imageBytes)
-        intent.putExtra("twitterid",itemModel.twitterid)
-        intent.putExtra("instagramid",itemModel.instagramid)
-        intent.putExtra("soundcloudid",itemModel.soundcloudid)
+        intent.putExtra("address", itemModel.address)
+        intent.putExtra("name", itemModel.name)
+        intent.putExtra("profile", itemModel.profile)
+        intent.putExtra("genre", itemModel.genre)
+        intent.putExtra("skill", itemModel.skill)
+        intent.putExtra("id", itemModel.id)
+        intent.putExtra("image", itemModel.imageBytes)
+        intent.putExtra("twitterid", itemModel.twitterid)
+        intent.putExtra("instagramid", itemModel.instagramid)
+        intent.putExtra("soundcloudid", itemModel.soundcloudid)
         startActivity(intent)
     }
 

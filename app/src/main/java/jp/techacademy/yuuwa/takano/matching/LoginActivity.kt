@@ -41,10 +41,12 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var mCreateAccountListener: OnCompleteListener<AuthResult>
     private lateinit var mLoginListener: OnCompleteListener<AuthResult>
     private lateinit var mDataBaseReference: DatabaseReference
+
     companion object {
         private val PERMISSIONS_REQUEST_CODE = 100
         private val CHOOSER_REQUEST_CODE = 100
     }
+
     // アカウント作成時にフラグを立て、ログイン処理後に名前をFirebaseに保存する
     private var mIsCreateAccount = false
     private var mPictureUri: Uri? = null
@@ -84,7 +86,8 @@ class LoginActivity : AppCompatActivity() {
             val matrix = Matrix()
             matrix.postScale(scale, scale)
 
-            val resizedImage = Bitmap.createBitmap(image, 0, 0, imageWidth, imageHeight, matrix, true)
+            val resizedImage =
+                Bitmap.createBitmap(image, 0, 0, imageWidth, imageHeight, matrix, true)
 
             // BitmapをImageViewに設定する
             imageView.setImageBitmap(resizedImage)
@@ -116,7 +119,7 @@ class LoginActivity : AppCompatActivity() {
         drop2.visibility = View.INVISIBLE
         drop3.visibility = View.INVISIBLE
 
-        createselect.setOnClickListener{
+        createselect.setOnClickListener {
             casset.visibility = View.INVISIBLE
             createselect.visibility = View.INVISIBLE
             imageView.visibility = View.VISIBLE
@@ -139,7 +142,7 @@ class LoginActivity : AppCompatActivity() {
             drop3.visibility = View.VISIBLE
             Toast.makeText(this, "アカウント作成", Toast.LENGTH_SHORT).show()
         }
-        loginselect.setOnClickListener{
+        loginselect.setOnClickListener {
             casset.visibility = View.VISIBLE
             createselect.visibility = View.VISIBLE
             loginButton.visibility = View.VISIBLE
@@ -164,8 +167,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         var addresstext = "未選択"
-        var genretext   = "未選択"
-        var skilltext   = "未選択"
+        var genretext = "未選択"
+        var skilltext = "未選択"
         var bitMap = ""
 
 
@@ -174,9 +177,21 @@ class LoginActivity : AppCompatActivity() {
         val genrespinner = findViewById<Spinner>(R.id.genre_spinner)
         val skillspinner = findViewById<Spinner>(R.id.skill_spinner)
 
-        val addressadapter = ArrayAdapter.createFromResource(this, R.array.address_spinnerItems, android.R.layout.simple_spinner_item)
-        val genreadapter = ArrayAdapter.createFromResource(this, R.array.genre_spinnerItems, android.R.layout.simple_spinner_item)
-        val skilladapter = ArrayAdapter.createFromResource(this, R.array.skill_spinnerItems, android.R.layout.simple_spinner_item)
+        val addressadapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.address_spinnerItems,
+            android.R.layout.simple_spinner_item
+        )
+        val genreadapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.genre_spinnerItems,
+            android.R.layout.simple_spinner_item
+        )
+        val skilladapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.skill_spinnerItems,
+            android.R.layout.simple_spinner_item
+        )
 
         addressadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         genreadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -188,7 +203,12 @@ class LoginActivity : AppCompatActivity() {
 
         addressspinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             // 項目が選択された時に呼ばれる
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 addresstext = parent?.selectedItem as String //所在地データ
                 Log.v("test_address", addresstext)
             }
@@ -200,7 +220,12 @@ class LoginActivity : AppCompatActivity() {
 
         genrespinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             // 項目が選択された時に呼ばれる
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 genretext = parent?.selectedItem as String //ジャンルデータ
                 Log.v("test_genre", genretext)
             }
@@ -212,7 +237,12 @@ class LoginActivity : AppCompatActivity() {
 
         skillspinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             // 項目が選択された時に呼ばれる
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 skilltext = parent?.selectedItem as String //スキルデータ
                 Log.v("test_skill", skilltext)
 
@@ -223,9 +253,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         //所在地・ジャンル・スキルの選択-ここまで-
-
-
-
 
 
         //ログイン・アカウント作成の処理-ここから-
@@ -280,7 +307,8 @@ class LoginActivity : AppCompatActivity() {
                 // 成功した場合
                 val user = mAuth.currentUser
                 val local = "Local"
-                val localRef = mDataBaseReference.child(AccountPATH).child(local).child(addresstext).child(genretext).child(user!!.uid)
+                val localRef = mDataBaseReference.child(AccountPATH).child(local).child(addresstext)
+                    .child(genretext).child(user!!.uid)
                 val all = "all"
                 val allRef = mDataBaseReference.child(AccountPATH).child(all).child(user!!.uid)
 
@@ -297,27 +325,27 @@ class LoginActivity : AppCompatActivity() {
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos)
                         bitMap = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT)
                     }
-                        val bit = bitMap
-                        val name = nameText.text.toString().trim()
+                    val bit = bitMap
+                    val name = nameText.text.toString().trim()
 //                        val profiledata = profileText.toString().trim()
-                        val twitterid = twitter_Text.text.toString().trim()
-                        val soundcloud = soundcloudID_Text.text.toString().trim()
-                        val instagram = instagram_Text.text.toString().trim()
+                    val twitterid = twitter_Text.text.toString().trim()
+                    val soundcloud = soundcloudID_Text.text.toString().trim()
+                    val instagram = instagram_Text.text.toString().trim()
 
-                        val data = HashMap<String, String>()
-                        data["name"] = name
+                    val data = HashMap<String, String>()
+                    data["name"] = name
 //                        data["profile"] = profiledata
-                        data["address"] = addresstext
-                        data["genre"] = genretext
-                        data["skill"] = skilltext
-                        data["id"] = user!!.uid
-                        data["image"] = bit
-                        data["twitter"] = twitterid
-                        data["instagram"] = instagram
-                        data["soundcloud"] = soundcloud
-                        localRef.setValue(data)
-                        allRef.setValue(data)
-                    }
+                    data["address"] = addresstext
+                    data["genre"] = genretext
+                    data["skill"] = skilltext
+                    data["id"] = user!!.uid
+                    data["image"] = bit
+                    data["twitter"] = twitterid
+                    data["instagram"] = instagram
+                    data["soundcloud"] = soundcloud
+                    localRef.setValue(data)
+                    allRef.setValue(data)
+                }
                 Toast.makeText(this, "ログインしました", Toast.LENGTH_SHORT).show()
 
                 // Activityを閉じる
@@ -377,29 +405,29 @@ class LoginActivity : AppCompatActivity() {
 
 
         emailText.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
 
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    val email = emailText.text.toString()
-                    if (email.endsWith(".com")) {
-                        mail_info.visibility = View.INVISIBLE
-                    } else {
-                        mail_info.visibility = View.VISIBLE
-                    }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val email = emailText.text.toString()
+                if (email.endsWith(".com")) {
+                    mail_info.visibility = View.INVISIBLE
+                } else {
+                    mail_info.visibility = View.VISIBLE
                 }
+            }
 
-                override fun afterTextChanged(s: Editable?) {
+            override fun afterTextChanged(s: Editable?) {
 
-                }
-            })
+            }
+        })
     }
-
 
 
     private fun createAccount(email: String, password: String) {
         // アカウントを作成する
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(mCreateAccountListener)
+        mAuth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(mCreateAccountListener)
     }
 
     private fun login(email: String, password: String) {
@@ -408,7 +436,11 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             PERMISSIONS_REQUEST_CODE -> {
@@ -421,33 +453,32 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-//ログイン・アカウント作成の処理-ここまで-
-private fun showChooser() {
-    // ギャラリーから選択するIntent
-    val galleryIntent = Intent(Intent.ACTION_GET_CONTENT)
-    galleryIntent.type = "image/*"
-    galleryIntent.addCategory(Intent.CATEGORY_OPENABLE)
+    //ログイン・アカウント作成の処理-ここまで-
+    private fun showChooser() {
+        // ギャラリーから選択するIntent
+        val galleryIntent = Intent(Intent.ACTION_GET_CONTENT)
+        galleryIntent.type = "image/*"
+        galleryIntent.addCategory(Intent.CATEGORY_OPENABLE)
 
-    // カメラで撮影するIntent
-    val filename = System.currentTimeMillis().toString() + ".jpg"
-    val values = ContentValues()
-    values.put(MediaStore.Images.Media.TITLE, filename)
-    values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
-    mPictureUri = contentResolver
-        .insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+        // カメラで撮影するIntent
+        val filename = System.currentTimeMillis().toString() + ".jpg"
+        val values = ContentValues()
+        values.put(MediaStore.Images.Media.TITLE, filename)
+        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+        mPictureUri = contentResolver
+            .insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
 
-    val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, mPictureUri)
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, mPictureUri)
 
-    // ギャラリー選択のIntentを与えてcreateChooserメソッドを呼ぶ
-    val chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.get_image))
+        // ギャラリー選択のIntentを与えてcreateChooserメソッドを呼ぶ
+        val chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.get_image))
 
-    // EXTRA_INITIAL_INTENTSにカメラ撮影のIntentを追加
-    chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(cameraIntent))
+        // EXTRA_INITIAL_INTENTSにカメラ撮影のIntentを追加
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(cameraIntent))
 
-    startActivityForResult(chooserIntent, CHOOSER_REQUEST_CODE)
-}
-
+        startActivityForResult(chooserIntent, CHOOSER_REQUEST_CODE)
+    }
 
 
 }

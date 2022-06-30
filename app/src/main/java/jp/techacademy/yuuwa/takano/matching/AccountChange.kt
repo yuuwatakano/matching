@@ -29,6 +29,7 @@ import java.io.ByteArrayOutputStream
 
 
 class AccountChange : AppCompatActivity() {
+    //権限やデータベースリファレンスの初期化
     private lateinit var mDataBaseReference: DatabaseReference
     private var mPictureUri: Uri? = null
 
@@ -90,24 +91,23 @@ class AccountChange : AppCompatActivity() {
     }
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_change)
         window.statusBarColor = ContextCompat.getColor(this, R.color.transparent_status_bar)
 
         var bitMap = ""
-
-        val address =intent.getStringExtra("loginaddress")
-        val name =intent.getStringExtra("loginname")
-        val profile =intent.getStringExtra("loginprofile")
-        val genre =intent.getStringExtra("logingenre")
-        val skill =intent.getStringExtra("loginskill")
-        val id =intent.getStringExtra("loginid")
-        val twitterid =intent.getStringExtra("logintwitterid")
-        val instagramid =intent.getStringExtra("logininstagramid")
-        val soundcloudid =intent.getStringExtra("loginsoundcloudid")
-        val icon=intent.getByteArrayExtra("loginimage")
+        //ログインアカウントデータ受け
+        val address = intent.getStringExtra("loginaddress")
+        val name = intent.getStringExtra("loginname")
+        val profile = intent.getStringExtra("loginprofile")
+        val genre = intent.getStringExtra("logingenre")
+        val skill = intent.getStringExtra("loginskill")
+        val id = intent.getStringExtra("loginid")
+        val twitterid = intent.getStringExtra("logintwitterid")
+        val instagramid = intent.getStringExtra("logininstagramid")
+        val soundcloudid = intent.getStringExtra("loginsoundcloudid")
+        val icon = intent.getByteArrayExtra("loginimage")
         Log.d("tkn9", address?.toString())
         Log.d("tkn9", name?.toString())
         Log.d("tkn9", genre?.toString())
@@ -130,14 +130,14 @@ class AccountChange : AppCompatActivity() {
                 Bitmap.Config.ARGB_8888,
                 true
             )
-            val imageView =change_imageView as ImageView
+            val imageView = change_imageView as ImageView
             imageView.setImageBitmap(image)
-        }else{
-            val imageView =change_imageView as ImageView
+        } else {
+            val imageView = change_imageView as ImageView
             imageView.setImageBitmap(null)
         }
 
-        saveButton.setOnClickListener {
+        saveButton.setOnClickListener {//保存ボタン
             val user = FirebaseAuth.getInstance().currentUser
             val local = "Local"
 
@@ -153,7 +153,7 @@ class AccountChange : AppCompatActivity() {
             // 添付画像が設定されていれば画像を取り出してBASE64エンコードする
             if (drawable != null) {
                 val bitmap = drawable.bitmap
-                if(bitmap !=null) {
+                if (bitmap != null) {
                     val baos = ByteArrayOutputStream()
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos)
                     bitMap = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT)
@@ -167,26 +167,28 @@ class AccountChange : AppCompatActivity() {
             var soundclouddata = change_soundcloudID_Text.text.toString().trim()
             var instagramdata = change_instagram_Text.text.toString().trim()
 
-if(namedata.isNotEmpty()) {
-    val sender: MutableMap<String, Any> = HashMap()
-    sender["name"] = namedata
-    sender["image"] = bit
-    sender["profile"] = profiledata
-    sender["twitter"] = twitterdata
-    sender["instagram"] = instagramdata
-    sender["soundcloud"] = soundclouddata
-    mDataBaseReference.child(AccountPATH).child(local).child(address).child(genre).child(
-        user!!.uid
-    ).updateChildren(sender)
-    mDataBaseReference.child(AccountPATH).child(all).child(id).updateChildren(sender)
-    Toast.makeText(this, "編集内容を保存", Toast.LENGTH_SHORT).show()
+            if (namedata.isNotEmpty()) {
+                val sender: MutableMap<String, Any> = HashMap()
+                sender["name"] = namedata
+                sender["image"] = bit
+                sender["profile"] = profiledata
+                sender["twitter"] = twitterdata
+                sender["instagram"] = instagramdata
+                sender["soundcloud"] = soundclouddata
+                mDataBaseReference.child(AccountPATH).child(local).child(address).child(genre)
+                    .child(
+                        user!!.uid
+                    ).updateChildren(sender)
+                mDataBaseReference.child(AccountPATH).child(all).child(id).updateChildren(sender)
+                Toast.makeText(this, "編集内容を保存", Toast.LENGTH_SHORT).show()
 
-    finish()
-}else{
-    Toast.makeText(this, "名前を入力してください", Toast.LENGTH_SHORT).show()
+                finish()
+            } else {
+                Toast.makeText(this, "名前を入力してください", Toast.LENGTH_SHORT).show()
 
-}
+            }
         }
+
         change_imageView.setOnClickListener { v ->
             // パーミッションの許可状態を確認する
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -203,16 +205,17 @@ if(namedata.isNotEmpty()) {
             } else {
                 showChooser()
             }
-
-
         }
-        cancelButton.setOnClickListener { v ->
+
+        cancelButton.setOnClickListener {//編集内容破棄ボタン
             Toast.makeText(this, "編集内容を破棄", Toast.LENGTH_SHORT).show()
             finish()
         }
-        back_buttom.setOnClickListener { v ->
+
+        back_buttom.setOnClickListener {//戻るボタン
             finish()
         }
+
     }
 
     override fun onResume() {
@@ -237,7 +240,7 @@ if(namedata.isNotEmpty()) {
         }
     }
 
-    private fun showChooser() {
+    private fun showChooser() {//アイコン写真を選択し設定する関数
         // ギャラリーから選択するIntent
         val galleryIntent = Intent(Intent.ACTION_GET_CONTENT)
         galleryIntent.type = "image/*"

@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentActivity
 import kotlinx.android.synthetic.main.activity_home_fragment.*
 import layout.PageAdapter
 
-class HomeFragment: Fragment() {
+class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,6 +21,7 @@ class HomeFragment: Fragment() {
         return inflater.inflate(R.layout.activity_home_fragment, container, false)
 
     }
+
     override fun onResume() {
         super.onResume()
 
@@ -29,7 +30,7 @@ class HomeFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.v("test_takano" , "onViewCreated")
+        Log.v("test_takano", "onViewCreated")
         //ここの「pager」はfragment_second.xmlのViewPagerのidの事！
         pager.adapter = PageAdapter(childFragmentManager)
         tabLayout.setupWithViewPager(pager)

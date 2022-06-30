@@ -13,20 +13,20 @@ class AccountPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_page)
         window.statusBarColor = ContextCompat.getColor(this, R.color.transparent_status_bar)
-        back_buttom.setOnClickListener{
+        back_buttom.setOnClickListener {
             finish()
         }
-
-        val address =intent.getStringExtra("address")
-        val name =intent.getStringExtra("name")
-        val profile =intent.getStringExtra("profile")
-        val genre =intent.getStringExtra("genre")
-        val skill =intent.getStringExtra("skill")
-        val id =intent.getStringExtra("id")
-        val twitterid =intent.getStringExtra("twitterid")
-        val instagramid =intent.getStringExtra("instagramid")
-        val soundcloudid =intent.getStringExtra("soundcloudid")
-        val icon=intent.getByteArrayExtra("image")
+        //フラグメントから受け取ったデータを別アクティビティのフラグメントへ渡す
+        val address = intent.getStringExtra("address")
+        val name = intent.getStringExtra("name")
+        val profile = intent.getStringExtra("profile")
+        val genre = intent.getStringExtra("genre")
+        val skill = intent.getStringExtra("skill")
+        val id = intent.getStringExtra("id")
+        val twitterid = intent.getStringExtra("twitterid")
+        val instagramid = intent.getStringExtra("instagramid")
+        val soundcloudid = intent.getStringExtra("soundcloudid")
+        val icon = intent.getByteArrayExtra("image")
         Log.d("tkn2", address.toString())
         Log.d("tkn2", name.toString())
         Log.d("tkn2", genre.toString())

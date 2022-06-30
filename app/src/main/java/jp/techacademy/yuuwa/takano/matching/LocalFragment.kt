@@ -46,22 +46,23 @@ class LocalFragment : Fragment() {
             Log.d("test_local1", dataSnapshot.toString())
             Log.d("test_local1", dataSnapshot.key.toString())
             Log.d("test_local1", dataSnapshot.value.toString())
-            if (dataSnapshot.value == null){
+            if (dataSnapshot.value == null) {
                 return
             }
 
             val map = dataSnapshot.value as Map<*, *>
-            val ad = map["address"]?: ""
-            val gr = map["genre"]?: ""
+            val ad = map["address"] ?: ""
+            val gr = map["genre"] ?: ""
             val Local = "Local"
             Log.d("test_local2", ad.toString())
             Log.d("test_local2", gr.toString())
 
-            mAccountRef = mDatabaseReference.child(AccountPATH).child(Local).child(ad.toString()).child(gr.toString())
+            mAccountRef = mDatabaseReference.child(AccountPATH).child(Local).child(ad.toString())
+                .child(gr.toString())
 
             mAccountRef!!.addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(Snapshot: DataSnapshot, s: String?) {
-                    val map = Snapshot.value as Map<String,String>
+                    val map = Snapshot.value as Map<String, String>
                     val user = FirebaseAuth.getInstance().currentUser
                     Log.d("test_local1", Snapshot.toString())
                     val name = map["name"] ?: ""
@@ -74,7 +75,7 @@ class LocalFragment : Fragment() {
                     val twitterID = map["twitter"] ?: ""
                     val instagram = map["instagram"] ?: ""
                     val soundcloud = map["soundcloud"] ?: ""
-                    if (id == user!!.uid){
+                    if (id == user!!.uid) {
                         return
                     }
                     val bytes =
@@ -88,17 +89,30 @@ class LocalFragment : Fragment() {
                     Log.d("test_local3", genre)
                     Log.d("test_local3", skill)
 
-                    val account = Account(name, profile,address, genre, skill,id,twitterID,instagram,soundcloud,bytes)
+                    val account = Account(
+                        name,
+                        profile,
+                        address,
+                        genre,
+                        skill,
+                        id,
+                        twitterID,
+                        instagram,
+                        soundcloud,
+                        bytes
+                    )
                     Log.d("test", account.toString())
                     mAccountArrayList.add(account)
                     mAdapter.notifyDataSetChanged()
                 }
+
                 override fun onCancelled(firebaseError: DatabaseError) {}
                 override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {}
                 override fun onChildRemoved(dataSnapshot: DataSnapshot) {}
                 override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {}
             })
         }
+
         override fun onCancelled(p0: DatabaseError) {}
     }
     //Account配列にデータを受け渡すリスナー　ここまで
@@ -126,10 +140,10 @@ class LocalFragment : Fragment() {
             })
         val user = FirebaseAuth.getInstance().currentUser
         val all = "all"
-        if(user != null){
+        if (user != null) {
             mAccountRef = mDatabaseReference.child(AccountPATH).child(all).child(user!!.uid)
             mAccountRef!!.addListenerForSingleValueEvent(mAccountListener)
-        }else{
+        } else {
             startActivity(Intent(context, LoginActivity::class.java))
         }
         this.recyclerView?.apply {
@@ -156,17 +170,17 @@ class LocalFragment : Fragment() {
         Log.d("tkn", itemModel.skill)
         Log.d("tkn", itemModel.imageBytes.toString())
         val intent = Intent(activity, AccountPageActivity::class.java)
-        intent.putExtra("address",itemModel.address)
-        intent.putExtra("name",itemModel.name)
-        intent.putExtra("profile",itemModel.profile)
-        intent.putExtra("genre",itemModel.genre)
-        intent.putExtra("skill",itemModel.skill)
-        intent.putExtra("id",itemModel.id)
-        intent.putExtra("image",itemModel.imageBytes)
-        intent.putExtra("twitterid",itemModel.twitterid)
-        intent.putExtra("instagramid",itemModel.instagramid)
-        intent.putExtra("soundcloudid",itemModel.soundcloudid)
+        intent.putExtra("address", itemModel.address)
+        intent.putExtra("name", itemModel.name)
+        intent.putExtra("profile", itemModel.profile)
+        intent.putExtra("genre", itemModel.genre)
+        intent.putExtra("skill", itemModel.skill)
+        intent.putExtra("id", itemModel.id)
+        intent.putExtra("image", itemModel.imageBytes)
+        intent.putExtra("twitterid", itemModel.twitterid)
+        intent.putExtra("instagramid", itemModel.instagramid)
+        intent.putExtra("soundcloudid", itemModel.soundcloudid)
         startActivity(intent)
     }
 
-    }
+}

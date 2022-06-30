@@ -28,8 +28,7 @@ class AccountPageFragment : Fragment() {
     private var mCheckRef: DatabaseReference? = null
     private var mMatchRef: DatabaseReference? = null
     private var mMatchingCheckRef: DatabaseReference? = null
-    private var isMatched : Boolean = false
-
+    private var isMatched: Boolean = false
 
 
     override fun onCreateView(
@@ -39,6 +38,7 @@ class AccountPageFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_account_page, container, false)
 
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -53,7 +53,9 @@ class AccountPageFragment : Fragment() {
         //マッチングしている場合はボタンを全て消す
         val matching = "matching"
         val all = "all"
-        mMatchingCheckRef = mDataBaseReference.child(AccountPATH).child(all).child(user!!.uid).child(matching).child(id.toString())
+        mMatchingCheckRef =
+            mDataBaseReference.child(AccountPATH).child(all).child(user!!.uid).child(matching)
+                .child(id.toString())
         mMatchingCheckRef!!.addListenerForSingleValueEvent(mMatchingCheckListener)
 
     }
@@ -62,7 +64,7 @@ class AccountPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         profileText.visibility = View.INVISIBLE
 
-        profileText_info1.setOnClickListener { _ ->
+        profileText_info1.setOnClickListener {
             profileText.visibility = View.VISIBLE
             profileText_info1.visibility = View.INVISIBLE
         }
@@ -91,8 +93,9 @@ class AccountPageFragment : Fragment() {
         Log.d("tkn5", id.toString())
 
         if (icon!!.isNotEmpty()) {
-            val image = BitmapFactory.decodeByteArray(icon, 0, icon.size).copy(Bitmap.Config.ARGB_8888, true)
-            val imageView =iconImageView as ImageView
+            val image = BitmapFactory.decodeByteArray(icon, 0, icon.size)
+                .copy(Bitmap.Config.ARGB_8888, true)
+            val imageView = iconImageView as ImageView
             imageView.setImageBitmap(image)
         }
 
@@ -103,7 +106,7 @@ class AccountPageFragment : Fragment() {
         skillText.text = skill
 
 
-        match_send_button.setOnClickListener { _ ->
+        match_send_button.setOnClickListener {//マッチ申請ボタン
             val database = FirebaseDatabase.getInstance()
             val favoriteref = database.getReference(FavoritePATH)
             val user = FirebaseAuth.getInstance().currentUser
@@ -113,7 +116,7 @@ class AccountPageFragment : Fragment() {
             match_send_button.visibility = View.INVISIBLE
         }
 
-        match_send_cansel_button.setOnClickListener { _ ->
+        match_send_cansel_button.setOnClickListener {//マッチ申請キャンセルボタン
             val database = FirebaseDatabase.getInstance()
             val favoriteref = database.getReference(FavoritePATH)
             val user = FirebaseAuth.getInstance().currentUser
@@ -123,15 +126,17 @@ class AccountPageFragment : Fragment() {
             match_send_cansel_button.visibility = View.INVISIBLE
         }
 
-        match_button.setOnClickListener { _ ->
+        match_button.setOnClickListener {//マッチングボタン
             val database = FirebaseDatabase.getInstance()
             val accountref = database.getReference(AccountPATH)
             val user = FirebaseAuth.getInstance().currentUser
             val all = "all"
             val id = requireArguments().getString("id")
             val matching = "matching"
-            accountref.child(all).child(user!!.uid).child(matching).child(id.toString()).setValue("matchinguser")
-            accountref.child(all).child(id.toString()).child(matching).child(user!!.uid).setValue("matchinguser")
+            accountref.child(all).child(user!!.uid).child(matching).child(id.toString())
+                .setValue("matchinguser")
+            accountref.child(all).child(id.toString()).child(matching).child(user!!.uid)
+                .setValue("matchinguser")
             val favoriteref = database.getReference(FavoritePATH)
             favoriteref.child(user!!.uid).child(id.toString()).setValue(null)
             Toast.makeText(context, "Match!!", Toast.LENGTH_SHORT).show()
@@ -142,15 +147,17 @@ class AccountPageFragment : Fragment() {
             soundcloud_button.visibility = View.VISIBLE
         }
 
-        match_delete_button.setOnClickListener { _ ->
+        match_delete_button.setOnClickListener {//マッチ解除ボタン
             val database = FirebaseDatabase.getInstance()
             val accountref = database.getReference(AccountPATH)
             val user = FirebaseAuth.getInstance().currentUser
             val all = "all"
             val id = requireArguments().getString("id")
             val matching = "matching"
-            accountref.child(all).child(user!!.uid).child(matching).child(id.toString()).setValue(null)
-            accountref.child(all).child(id.toString()).child(matching).child(user!!.uid).setValue(null)
+            accountref.child(all).child(user!!.uid).child(matching).child(id.toString())
+                .setValue(null)
+            accountref.child(all).child(id.toString()).child(matching).child(user!!.uid)
+                .setValue(null)
             Toast.makeText(context, "マッチ解除", Toast.LENGTH_SHORT).show()
             match_delete_button.visibility = View.INVISIBLE
             twitter_button.visibility = View.INVISIBLE
@@ -159,18 +166,19 @@ class AccountPageFragment : Fragment() {
             match_send_button.visibility = View.VISIBLE
         }
 
-        twitter_button.setOnClickListener {
+        twitter_button.setOnClickListener {//twitterアイコン
             context?.let { it1 -> navigateToTwitterUserPage(twitterid.toString(), it1) }
         }
-        instagram_button.setOnClickListener {
+        instagram_button.setOnClickListener {//instagramアイコン
             context?.let { it1 -> navigateToInstagramUserPage(instagramid.toString(), it1) }
         }
-        soundcloud_button.setOnClickListener{
+        soundcloud_button.setOnClickListener {//SoundCloudアイコン
             context?.let { it1 -> navigateToSoundCloud(soundcloudid.toString(), it1) }
         }
 
 
     }
+
     private val mCheckListener = object : ValueEventListener {
         override fun onDataChange(dataSnapshot: DataSnapshot) {
             Log.d("test_ck", dataSnapshot.toString())
@@ -178,17 +186,18 @@ class AccountPageFragment : Fragment() {
             Log.d("test_ck", dataSnapshot.value.toString())
 
 
-            if (dataSnapshot.value == null){
+            if (dataSnapshot.value == null) {
                 match_send_button.visibility = View.VISIBLE
                 match_send_cansel_button.visibility = View.INVISIBLE
                 match_button.visibility = View.INVISIBLE
-            }else{
+            } else {
                 match_send_button.visibility = View.INVISIBLE
                 match_send_cansel_button.visibility = View.VISIBLE
                 match_button.visibility = View.INVISIBLE
             }
             return
         }
+
         override fun onCancelled(p0: DatabaseError) {}
     }
 
@@ -198,15 +207,16 @@ class AccountPageFragment : Fragment() {
             Log.d("test_match", dataSnapshot.key.toString())
             Log.d("test_match", dataSnapshot.value.toString())
             val id = requireArguments().getString("id")
-            if (dataSnapshot.value != null){
+            if (dataSnapshot.value != null) {
                 match_send_button.visibility = View.INVISIBLE
                 match_send_cansel_button.visibility = View.INVISIBLE
                 match_button.visibility = View.VISIBLE
-            }else{
+            } else {
                 initUnmatchSend(id.toString())
             }
             return
         }
+
         override fun onCancelled(p0: DatabaseError) {}
     }
 
@@ -220,10 +230,10 @@ class AccountPageFragment : Fragment() {
 
 
 
-            if(dataSnapshot.value == null){
+            if (dataSnapshot.value == null) {
                 initUnMatch(id.toString())
 
-            }else{
+            } else {
                 match_delete_button.visibility = View.VISIBLE
                 twitter_button.visibility = View.VISIBLE
                 instagram_button.visibility = View.VISIBLE
@@ -231,10 +241,11 @@ class AccountPageFragment : Fragment() {
             }
             return
         }
+
         override fun onCancelled(p0: DatabaseError) {}
     }
 
-    private fun initUnMatch(unMatchUserId:String){
+    private fun initUnMatch(unMatchUserId: String) {//非同期処理なため関数でマッチング状況のチェックを入れている
         val user = FirebaseAuth.getInstance().currentUser
 
         //マッチング申請”されているか”チェック[申請されている場合はマッチング承諾ボタン]
@@ -243,7 +254,7 @@ class AccountPageFragment : Fragment() {
         mMatchRef!!.addListenerForSingleValueEvent(mMatchListener)
     }
 
-    private fun initUnmatchSend(unMatchUserSendId:String){
+    private fun initUnmatchSend(unMatchUserSendId: String) {//非同期処理なため関数でマッチング状況のチェックを入れている
         val user = FirebaseAuth.getInstance().currentUser
 
         //マッチング申請しているかチェック[申請済みは申請キャンセルボタン/申請していなければ申請ボタン]
@@ -256,9 +267,7 @@ class AccountPageFragment : Fragment() {
     }
 
 
-
-
-    fun navigateToSoundCloud(userId: String, context: Context) {
+    fun navigateToSoundCloud(userId: String, context: Context) {//SoundCloudCustomTab処理
         val url = "https://soundcloud.com/$userId"
         try {
             Intent(Intent.ACTION_VIEW).also {
@@ -272,7 +281,7 @@ class AccountPageFragment : Fragment() {
     }
 
     //Instagram
-    fun navigateToInstagramUserPage(userId: String, context: Context) {
+    fun navigateToInstagramUserPage(userId: String, context: Context) {//InstagramCustomTab処理
         val url = "http://instagram.com/$userId"
         try {
             Intent(Intent.ACTION_VIEW).also {
@@ -286,7 +295,7 @@ class AccountPageFragment : Fragment() {
     }
 
     //Twitter
-    fun navigateToTwitterUserPage(userId: String, context: Context) {
+    fun navigateToTwitterUserPage(userId: String, context: Context) {//TwitterCustomTab処理
         val url = "https://twitter.com/$userId"
         try {
             Intent(Intent.ACTION_VIEW).also {
@@ -300,7 +309,7 @@ class AccountPageFragment : Fragment() {
     }
 
     //Custom Tab
-    fun navigateToCustomTab(url: String, context: Context) {
+    fun navigateToCustomTab(url: String, context: Context) {//CustomTab処理
         val uri = Uri.parse(url)
         CustomTabsIntent.Builder().also { builder ->
             builder.setShowTitle(true)
